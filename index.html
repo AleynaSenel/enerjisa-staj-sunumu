@@ -30,63 +30,97 @@
             padding: 0;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            background-image: radial-gradient(circle at 50% 50%, rgba(253, 216, 53, 0.05) 0%, var(--bg-color) 60%);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
+        /* Smooth scroll on the real scroll container */
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* HERO SECTION */
+        /* ── Section reveal animation ── */
+        /* Sections start invisible and slightly below, then "float up" into view */
+        section, #hero {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        /* Hero is immediately visible (no delay on first load) */
         #hero {
-            height: 100vh;
+            opacity: 1;
+            transform: none;
+            transition: none;
+        }
+        /* Class added by IntersectionObserver when section enters viewport */
+        section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* HERO SECTION — back inside wrapper, same design space as everything else */
+        #hero {
             width: 100%;
-            margin: 0;
-            padding: 0;
-            background-image: url('Teams Arka Plan.png');
-            background-size: cover;
-            background-position: center;
+            height: 675px;    /* 1200px × 9/16 — one design-screen at 16:9 */
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            overflow: hidden;
+        }
+
+        /* Full-frame image — object-fit: contain means zero cropping */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background-color: #fdb913; /* letterbox fill in brand yellow */
+            z-index: 0;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 800px;
+            max-width: 760px;
+            padding: 0 24px;
+            /* Reserve space for the absolute scroll-indicator at the bottom
+               so the subtitle never overlaps with it */
+            padding-bottom: 80px;
         }
 
+        /* Fixed px sizes — transform: scale() handles all responsiveness */
         .hero-title {
             color: #0A2540;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+            font-size: 1.7rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            margin-bottom: 16px;
+            text-align: center;
         }
 
         .hero-subtitle {
             color: #0A2540;
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.25rem;
+            font-weight: 500;
+            opacity: 0.9;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 40px;
+            bottom: 24px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 2;
+            z-index: 3;
             color: var(--enerjisa-navy);
             font-weight: 600;
+            font-size: 0.85rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             animation: bounce 2s infinite;
+            white-space: nowrap;
         }
 
         .scroll-indicator svg {
@@ -112,15 +146,26 @@
 
         /* SECTION COMMON */
         section {
-            padding: 80px 20px;
+            /* Height set via JS --slide-h custom property */
+            min-height: var(--slide-h, 100vh);
+            box-sizing: border-box;
+            padding: 60px 40px;
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            /* If content is taller than viewport, allow it to grow but keep padding */
+            overflow: visible;
         }
 
         .section-title {
             color: var(--enerjisa-navy);
-            font-size: 2rem;
-            margin-bottom: 40px;
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 48px;
             text-align: center;
             position: relative;
         }
@@ -128,11 +173,11 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 48px;
             height: 4px;
-            background-color: var(--enerjisa-yellow);
-            margin: 15px auto 0;
-            border-radius: 2px;
+            background: linear-gradient(90deg, var(--enerjisa-yellow), #ffca41);
+            margin: 16px auto 0;
+            border-radius: 4px;
         }
 
         /* TEAM SECTION */
@@ -140,16 +185,14 @@
             display: flex;
             flex-wrap: nowrap;
             overflow-x: auto;
-            gap: 20px;
-            padding: 20px 5px;
+            gap: 24px;
+            padding: 24px 4px 32px;
             -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
             scrollbar-color: var(--enerjisa-yellow) var(--bg-color);
         }
-        
-        .team-container::-webkit-scrollbar {
-            height: 8px;
-        }
+
+        .team-container::-webkit-scrollbar { height: 6px; }
         .team-container::-webkit-scrollbar-thumb {
             background-color: var(--enerjisa-yellow);
             border-radius: 4px;
@@ -158,76 +201,97 @@
         .team-member {
             flex: 0 0 auto;
             width: 200px;
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px 15px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px 16px 24px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border-bottom: 4px solid var(--enerjisa-navy);
-            transition: transform 0.3s ease;
+            /* layered shadow: ambient + directional */
+            box-shadow:
+                0 2px 4px rgba(0, 44, 95, 0.04),
+                0 8px 24px rgba(0, 44, 95, 0.08);
+            border-bottom: 3px solid var(--enerjisa-navy);
+            transition:
+                transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-bottom-color 0.25s ease;
         }
 
         .team-member:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 4px 8px rgba(0, 44, 95, 0.06),
+                0 20px 48px rgba(0, 44, 95, 0.14);
             border-bottom-color: var(--enerjisa-yellow);
         }
 
         .member-photo {
-            width: 100px;
-            height: 100px;
+            width: 88px;
+            height: 88px;
             border-radius: 50%;
-            background-color: #e9ecef;
-            margin: 0 auto 15px;
+            background: linear-gradient(135deg, #e9ecef 0%, #f8f9fa 100%);
+            margin: 0 auto 20px;
             border: 3px solid var(--enerjisa-yellow);
+            box-shadow: 0 0 0 4px rgba(253, 185, 19, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
         .member-name {
             color: var(--enerjisa-navy);
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 5px;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: -0.2px;
+            margin-bottom: 6px;
         }
 
         .member-role {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.2px;
         }
 
         /* TOC SECTION */
         .toc-list {
             list-style: none;
-            max-width: 600px;
+            max-width: 640px;
             margin: 0 auto;
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 8px 32px;
+            box-shadow:
+                0 2px 4px rgba(0, 44, 95, 0.04),
+                0 12px 32px rgba(0, 44, 95, 0.08);
             border-left: 5px solid var(--enerjisa-yellow);
         }
 
         .toc-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-            font-size: 1.1rem;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(0, 44, 95, 0.07);
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--enerjisa-navy);
             display: flex;
             align-items: center;
+            gap: 16px;
+            transition: color 0.2s ease;
         }
+        .toc-list li:hover { color: #0050a0; }
 
-        .toc-list li:last-child {
-            border-bottom: none;
-        }
+        .toc-list li:last-child { border-bottom: none; }
 
         .toc-list li::before {
-            content: '•';
-            color: var(--enerjisa-navy);
-            font-weight: bold;
-            font-size: 1.5rem;
-            margin-right: 15px;
+            content: '';
+            flex-shrink: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--enerjisa-yellow);
+            box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.25);
         }
 
         /* FLUID SECTIONS (APPLE STYLE) */
@@ -264,11 +328,23 @@
         }
 
         .fluid-title {
-            color: #1E293B;
-            font-size: 2.2rem;
-            margin-bottom: 25px;
-            font-weight: 700;
+            color: var(--enerjisa-navy);
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            margin-bottom: 24px;
             position: relative;
+        }
+        /* Yellow accent underline on fluid titles */
+        .fluid-title::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 4px;
+            background: var(--enerjisa-yellow);
+            border-radius: 4px;
+            margin-top: 12px;
         }
 
         .fluid-list {
@@ -278,78 +354,102 @@
 
         .fluid-list li {
             position: relative;
-            padding-left: 30px;
-            margin-bottom: 15px;
-            font-size: 1.15rem;
-            line-height: 1.8;
+            padding-left: 28px;
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+            line-height: 1.75;
+            font-weight: 400;
         }
 
         .fluid-list li::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 12px;
+            top: 10px;
             width: 10px;
             height: 10px;
-            background-color: var(--enerjisa-yellow);
+            background: var(--enerjisa-yellow);
             border-radius: 50%;
+            box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.20);
         }
 
         .fluid-media {
             flex: 1;
             width: 100%;
-            min-height: 350px;
-            background-color: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(0, 0, 0, 0.05);
+            min-height: 360px;
+            /* Premium gradient placeholder */
+            background:
+                linear-gradient(135deg,
+                    rgba(0, 44, 95, 0.04) 0%,
+                    rgba(253, 185, 19, 0.08) 50%,
+                    rgba(0, 44, 95, 0.04) 100%);
+            border: 1.5px solid rgba(0, 44, 95, 0.10);
             border-radius: 24px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: var(--text-muted);
+            color: rgba(0, 44, 95, 0.35);
             font-weight: 600;
-            padding: 20px;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            padding: 32px;
             z-index: 2;
-            margin-top: 30px;
+            margin-top: 0;
+            /* soft inner glow */
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.8),
+                0 8px 32px rgba(0, 44, 95, 0.07);
+            transition: box-shadow 0.3s ease;
+        }
+        .fluid-media:hover {
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.8),
+                0 16px 48px rgba(0, 44, 95, 0.12);
+        }
+        /* Icon inside placeholder */
+        .fluid-media::before {
+            content: '⬚';
+            font-size: 3rem;
+            opacity: 0.25;
+            margin-bottom: 12px;
         }
 
-        /* DESKTOP STYLES */
-        @media (min-width: 768px) {
-            .hero-title {
-                font-size: 4rem;
-            }
-            .hero-subtitle {
-                font-size: 1.5rem;
-            }
-            .team-container {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 30px;
-                overflow-x: visible;
-                padding: 0;
-            }
-            .team-member {
-                width: auto;
-            }
-            .fluid-section {
-                flex-direction: row;
-                gap: 80px;
-                padding: 0 40px;
-            }
-            .fluid-section:nth-child(even) {
-                flex-direction: row-reverse;
-            }
-            .fluid-section:nth-child(even) .huge-number {
-                left: auto;
-                right: 20px;
-            }
-            .fluid-content {
-                padding: 40px 0;
-            }
-            .fluid-media {
-                margin-top: 0;
-            }
+        /* STRICT DESKTOP LAYOUT */
+        .hero-title {
+            font-size: 4.2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            text-align: center;
         }
-
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            margin-top: 16px;
+            opacity: 0.85;
+            text-align: center;
+        }
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            overflow-x: visible;
+            padding: 0;
+            width: 100%;
+        }
+        .team-member { width: auto; }
+        .fluid-section {
+            flex-direction: row;
+            gap: 80px;
+            padding: 0 40px;
+        }
+        .fluid-section:nth-child(even) { flex-direction: row-reverse; }
+        .fluid-section:nth-child(even) .huge-number { left: auto; right: 20px; }
+        .fluid-content { padding: 40px 0; }
+        .fluid-media { margin-top: 0; }
+        
         /* STICKY LOGO */
         .sticky-logo {
             position: fixed;
@@ -368,23 +468,42 @@
             pointer-events: auto;
         }
 
-        @media (max-width: 768px) {
-            .sticky-logo {
-                width: 180px !important;
-            }
+        /* WRAPPER CSS */
+        html {
+            overflow-x: hidden;
+        }
+        body {
+            overflow-x: hidden;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+        }
+        #scale-container {
+            width: 100vw;
+            overflow-x: hidden;
+            overflow-y: visible;
+            position: relative;
+        }
+        #desktop-wrapper {
+            width: 1200px;
+            /* transform-origin and centering set by JS */
+            background-image: radial-gradient(circle at 50% 50%, rgba(253, 216, 53, 0.05) 0%, var(--bg-color) 60%);
         }
     </style>
 </head>
 <body>
     <img src="TOROSLAR_YENI_LOGO_MART2026.png" alt="Toroslar Logo" class="sticky-logo" id="stickyLogo">
 
-    <!-- HERO SECTION -->
+    <div id="scale-container">
+    <div id="desktop-wrapper">
+
+    <!-- HERO inside wrapper: scales with everything else -->
     <header id="hero">
+        <img src="teams-arka-plan.png" alt="Hero arka planı" class="hero-bg">
         <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
             <h1 class="hero-title">Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım Şebekelerine Uygulanması</h1>
             <p class="hero-subtitle">Enerjisa Toroslar EDAŞ Staj Projesi Sunumu</p>
         </div>
-        
         <div class="scroll-indicator">
             Detaylar için kaydırın
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -542,16 +661,176 @@
             easing: 'ease-out-cubic'
         });
 
-        // Sticky Logo Logic
-        window.addEventListener('scroll', () => {
+        // Sticky Logo — passive scroll + rAF to avoid layout thrashing
+        (function () {
             const logo = document.getElementById('stickyLogo');
-            // Show logo only when scrolled past the first viewport height
-            if (window.scrollY > window.innerHeight) {
-                logo.classList.add('show');
+            let rafPending = false;
+            window.addEventListener('scroll', () => {
+                if (rafPending) return;
+                rafPending = true;
+                requestAnimationFrame(() => {
+                    rafPending = false;
+                    if (window.scrollY > window.innerHeight) {
+                        logo.classList.add('show');
+                    } else {
+                        logo.classList.remove('show');
+                    }
+                });
+            }, { passive: true });
+        })();
+    </script>
+
+    </div><!-- /#scale-container -->
+    <!-- SCALE SCRIPT -->
+    <script>
+        function getViewportHeight() {
+            if (window.visualViewport) return window.visualViewport.height;
+            return window.innerHeight;
+        }
+
+        // Cached layout values — computed only on resize/load, never on scroll
+        window._layoutCache = { heroH: 0, slideH: 0, stops: [] };
+
+        function scaleWrapper() {
+            const wrapper   = document.getElementById('desktop-wrapper');
+            const container = document.getElementById('scale-container');
+            const DESIGN_WIDTH  = 1200;
+            const DESIGN_HEIGHT = 675;   // fixed design height for sections (16:9)
+            const vw = window.innerWidth;
+
+            // ── 1. Compute scale (never > 1) ──
+            const scale = Math.min(1, vw / DESIGN_WIDTH);
+
+            // ── 2. Hero design height = image's natural ratio (16:9) ──
+            //    Same as DESIGN_HEIGHT — image never over-zooms, never crops.
+            //    On non-16:9 screens hero won't fill 100vh, but that's acceptable
+            //    (priority: image integrity over filling the screen).
+            const heroDesignH = DESIGN_HEIGHT;  // 675px = 1200 * 9/16
+
+            // ── 3. Apply scale & center ──
+            wrapper.style.transformOrigin = 'top center';
+            wrapper.style.transform       = `scale(${scale})`;
+            if (scale < 1) {
+                wrapper.style.marginLeft  = `${(vw - DESIGN_WIDTH) / 2}px`;
+                wrapper.style.marginRight = '0';
             } else {
-                logo.classList.remove('show');
+                wrapper.style.marginLeft  = 'auto';
+                wrapper.style.marginRight = 'auto';
             }
-        });
+
+            // ── 4. CSS var for sections fallback ──
+            document.documentElement.style.setProperty('--slide-h', `${DESIGN_HEIGHT}px`);
+
+            // ── 5a. Set hero height to fill exact viewport ──
+            const hero = document.getElementById('hero');
+            if (hero) {
+                hero.style.height    = `${heroDesignH}px`;
+                hero.style.minHeight = `${heroDesignH}px`;
+            }
+
+            // ── 5b. Other sections: fixed DESIGN_HEIGHT (untouched per request) ──
+            document.querySelectorAll('section').forEach(sec => {
+                sec.style.minHeight      = `${DESIGN_HEIGHT}px`;
+                sec.style.display        = 'flex';
+                sec.style.flexDirection  = 'column';
+                sec.style.justifyContent = 'center';
+            });
+            document.querySelectorAll('.fluid-section').forEach(sec => {
+                sec.style.minHeight = `${DESIGN_HEIGHT}px`;
+            });
+
+            // ── 6. Recompute & cache snap stops (hero visual h + section visual h) ──
+            const heroVisualH   = heroDesignH * scale;   // = vh exactly
+            const sectionVisualH = DESIGN_HEIGHT * scale;
+            const sectionCount  = document.querySelectorAll('section').length;
+            const stops = [0];
+            for (let i = 0; i < sectionCount; i++) {
+                stops.push(Math.round(heroVisualH + i * sectionVisualH));
+            }
+            window._layoutCache = { heroH: heroVisualH, slideH: sectionVisualH, stops };
+
+            // ── 7. Update container visual height ──
+            requestAnimationFrame(() => requestAnimationFrame(() => {
+                const finalH = wrapper.scrollHeight * scale;
+                container.style.height = `${finalH}px`;
+                container.style.width  = `${vw}px`;
+            }));
+        }
+
+        window.addEventListener('resize', scaleWrapper);
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', scaleWrapper);
+        }
+        document.addEventListener('DOMContentLoaded', scaleWrapper);
+        window.addEventListener('load', scaleWrapper);
+        scaleWrapper();  // initial call
+    </script>
+    <script>
+        /* ══════════════════════════════════════════════
+           JS SCROLL-SNAP  (scale-safe, viewport-based)
+           ══════════════════════════════════════════════
+           Because #desktop-wrapper is transformed with
+           scale(), CSS scroll-snap sees design-space
+           coords and snaps to wrong positions.
+           We implement snap manually:
+           • debounce the scroll event
+           • find the nearest section boundary
+             (each section = 1 × real viewport height)
+           • smooth-scroll there if within 40% of the edge
+        ═══════════════════════════════════════════════ */
+        // JS SCROLL-SNAP (scale-safe, uses cached stops from scaleWrapper)
+        (function () {
+            let snapTimer = null;
+            let isSnapping = false;
+
+            function doSnap() {
+                if (isSnapping) return;
+                const { stops } = window._layoutCache;
+                if (!stops || stops.length === 0) return;
+
+                const y  = window.scrollY;
+                // Find nearest cached stop (no DOM reads)
+                let nearest = stops[0];
+                for (const s of stops) {
+                    if (Math.abs(s - y) < Math.abs(nearest - y)) nearest = s;
+                }
+
+                // Snap only if within 12% of a slide boundary (proximity feel).
+                // If the user does a small scroll and is outside this threshold, we leave them alone.
+                const slideH = window._layoutCache.slideH || window.innerHeight;
+                if (Math.abs(nearest - y) < slideH * 0.12) {
+                    isSnapping = true;
+                    window.scrollTo({ top: nearest, behavior: 'smooth' });
+                    setTimeout(() => { isSnapping = false; }, 900);
+                }
+            }
+
+            window.addEventListener('scroll', () => {
+                clearTimeout(snapTimer);
+                const delay = ('ontouchstart' in window) ? 220 : 150;
+                snapTimer = setTimeout(doSnap, delay);
+            }, { passive: true });
+        })();
+
+        /* ══════════════════════════════════════════════
+           INTERSECTION OBSERVER — section reveal
+           Each section floats up + fades in the moment
+           it enters the viewport (complementing AOS).
+        ═══════════════════════════════════════════════ */
+        (function () {
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Don't unobserve — lets re-entry also animate if needed
+                    }
+                });
+            }, {
+                threshold: 0.10   // trigger when 10% of the section is visible
+            });
+
+            document.querySelectorAll('section').forEach(sec => io.observe(sec));
+        })();
     </script>
 </body>
 </html>
