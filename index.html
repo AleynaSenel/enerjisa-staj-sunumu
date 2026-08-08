@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yapay Zeka Destekli Arıza Tahmini ve Kestirimci Bakım</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -37,18 +38,21 @@
 
         /* ── Section reveal animation ── */
         /* Sections start invisible and slightly below, then "float up" into view */
-        section, #hero {
+        section,
+        #hero {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
-                        transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
         }
+
         /* Hero is immediately visible (no delay on first load) */
         #hero {
             opacity: 1;
             transform: none;
             transition: none;
         }
+
         /* Class added by IntersectionObserver when section enters viewport */
         section.is-visible {
             opacity: 1;
@@ -58,7 +62,7 @@
         /* HERO SECTION — back inside wrapper, same design space as everything else */
         #hero {
             width: 100%;
-            height: 675px;    /* 1200px × 9/16 — one design-screen at 16:9 */
+            aspect-ratio: 16 / 9;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -66,56 +70,56 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
+            container-type: inline-size;
         }
 
-        /* Full-frame image — object-fit: contain means zero cropping */
+        /* Full-frame image — perfectly fits the 16:9 hero container */
         .hero-bg {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            background-color: #fdb913; /* letterbox fill in brand yellow */
+            object-fit: cover;
             z-index: 0;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 760px;
-            padding: 0 24px;
+            max-width: 63.3cqw;
+            padding: 0 2cqw;
             /* Reserve space for the absolute scroll-indicator at the bottom
                so the subtitle never overlaps with it */
-            padding-bottom: 80px;
+            padding-bottom: 6.6cqw;
         }
 
-        /* Fixed px sizes — transform: scale() handles all responsiveness */
+        /* Responsive text sizes maintaining exact proportion to the 16:9 box */
         .hero-title {
             color: #0A2540;
-            font-size: 1.7rem;
+            font-size: 2.26cqw; /* Matches 1.7rem at 1200px */
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1.25;
-            margin-bottom: 16px;
+            margin-bottom: 1.33cqw;
             text-align: center;
         }
 
         .hero-subtitle {
             color: #0A2540;
-            font-size: 1.25rem;
+            font-size: 1.66cqw; /* Matches 1.25rem at 1200px */
             font-weight: 500;
             opacity: 0.9;
         }
 
         .scroll-indicator {
             position: absolute;
-            bottom: 24px;
+            bottom: 2cqw;
             left: 50%;
             transform: translateX(-50%);
             z-index: 3;
             color: var(--enerjisa-navy);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 1.13cqw;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -124,21 +128,28 @@
         }
 
         .scroll-indicator svg {
-            width: 32px;
-            height: 32px;
-            margin-top: 10px;
+            width: 2.6cqw;
+            height: 2.6cqw;
+            margin-top: 0.83cqw;
             fill: var(--enerjisa-yellow);
             stroke: var(--enerjisa-navy);
             stroke-width: 2;
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
                 transform: translateY(0) translateX(-50%);
             }
+
             40% {
                 transform: translateY(-20px) translateX(-50%);
             }
+
             60% {
                 transform: translateY(-10px) translateX(-50%);
             }
@@ -192,7 +203,10 @@
             scrollbar-color: var(--enerjisa-yellow) var(--bg-color);
         }
 
-        .team-container::-webkit-scrollbar { height: 6px; }
+        .team-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
         .team-container::-webkit-scrollbar-thumb {
             background-color: var(--enerjisa-yellow);
             border-radius: 4px;
@@ -280,9 +294,14 @@
             gap: 16px;
             transition: color 0.2s ease;
         }
-        .toc-list li:hover { color: #0050a0; }
 
-        .toc-list li:last-child { border-bottom: none; }
+        .toc-list li:hover {
+            color: #0050a0;
+        }
+
+        .toc-list li:last-child {
+            border-bottom: none;
+        }
 
         .toc-list li::before {
             content: '';
@@ -336,6 +355,7 @@
             margin-bottom: 24px;
             position: relative;
         }
+
         /* Yellow accent underline on fluid titles */
         .fluid-title::after {
             content: '';
@@ -398,15 +418,17 @@
             margin-top: 0;
             /* soft inner glow */
             box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
                 0 8px 32px rgba(0, 44, 95, 0.07);
             transition: box-shadow 0.3s ease;
         }
+
         .fluid-media:hover {
             box-shadow:
-                inset 0 1px 0 rgba(255,255,255,0.8),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8),
                 0 16px 48px rgba(0, 44, 95, 0.12);
         }
+
         /* Icon inside placeholder */
         .fluid-media::before {
             content: '⬚';
@@ -415,22 +437,7 @@
             margin-bottom: 12px;
         }
 
-        /* STRICT DESKTOP LAYOUT */
-        .hero-title {
-            font-size: 4.2rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            line-height: 1.15;
-            text-align: center;
-        }
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-            margin-top: 16px;
-            opacity: 0.85;
-            text-align: center;
-        }
+
         .team-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -439,17 +446,34 @@
             padding: 0;
             width: 100%;
         }
-        .team-member { width: auto; }
+
+        .team-member {
+            width: auto;
+        }
+
         .fluid-section {
             flex-direction: row;
             gap: 80px;
             padding: 0 40px;
         }
-        .fluid-section:nth-child(even) { flex-direction: row-reverse; }
-        .fluid-section:nth-child(even) .huge-number { left: auto; right: 20px; }
-        .fluid-content { padding: 40px 0; }
-        .fluid-media { margin-top: 0; }
-        
+
+        .fluid-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .fluid-section:nth-child(even) .huge-number {
+            left: auto;
+            right: 20px;
+        }
+
+        .fluid-content {
+            padding: 40px 0;
+        }
+
+        .fluid-media {
+            margin-top: 0;
+        }
+
         /* STICKY LOGO */
         .sticky-logo {
             position: fixed;
@@ -470,367 +494,252 @@
 
         /* WRAPPER CSS */
         html {
-            overflow-x: hidden;
+            /* Standard behavior */
         }
+
         body {
-            overflow-x: hidden;
             background-color: var(--bg-color);
             margin: 0;
             padding: 0;
         }
+
         #scale-container {
-            width: 100vw;
-            overflow-x: hidden;
-            overflow-y: visible;
-            position: relative;
+            width: 100%;
         }
+
         #desktop-wrapper {
-            width: 1200px;
-            /* transform-origin and centering set by JS */
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
             background-image: radial-gradient(circle at 50% 50%, rgba(253, 216, 53, 0.05) 0%, var(--bg-color) 60%);
         }
     </style>
 </head>
+
 <body>
     <img src="TOROSLAR_YENI_LOGO_MART2026.png" alt="Toroslar Logo" class="sticky-logo" id="stickyLogo">
 
-    <div id="scale-container">
     <div id="desktop-wrapper">
 
-    <!-- HERO inside wrapper: scales with everything else -->
-    <header id="hero">
-        <img src="teams-arka-plan.png" alt="Hero arka planı" class="hero-bg">
-        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
-            <h1 class="hero-title">Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım Şebekelerine Uygulanması</h1>
-            <p class="hero-subtitle">Enerjisa Toroslar EDAŞ Staj Projesi Sunumu</p>
-        </div>
-        <div class="scroll-indicator">
-            Detaylar için kaydırın
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-        </div>
-    </header>
+            <!-- HERO inside wrapper: scales with everything else -->
+            <header id="hero">
+                <img src="teams-arka-plan.png" alt="Hero arka planı" class="hero-bg">
+                <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
+                    <h1 class="hero-title">Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım
+                        Şebekelerine Uygulanması</h1>
+                    <p class="hero-subtitle">Enerjisa Toroslar EDAŞ Staj Projesi Sunumu</p>
+                </div>
+                <div class="scroll-indicator">
+                    Detaylar için kaydırın
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </header>
 
-    <!-- EKİP BÖLÜMÜ -->
-    <section id="ekip">
-        <h2 class="section-title" data-aos="fade-up">Proje Ekibi</h2>
-        <div class="team-container" data-aos="fade-up" data-aos-delay="200">
-            <!-- Üye 1 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Aydanur Akın</h3>
-                <p class="member-role">Proje Lideri</p>
-            </div>
-            <!-- Üye 2 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Gökalp Eke</h3>
-                <p class="member-role">Teknik Lider (AI)</p>
-            </div>
-            <!-- Üye 3 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Yasemin Uslu</h3>
-                <p class="member-role">Optimizasyon Lideri</p>
-            </div>
-            <!-- Üye 4 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Özgür Sakallı</h3>
-                <p class="member-role">Veri Analizi Lideri</p>
-            </div>
-            <!-- Üye 5 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Aleyna Şenel</h3>
-                <p class="member-role">Görüntü İşleme Lideri</p>
-            </div>
-            <!-- Üye 6 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Zeliha Çelik</h3>
-                <p class="member-role">Sistem Tasarım Lideri</p>
-            </div>
-            <!-- Üye 7 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Selin Efesoy</h3>
-                <p class="member-role">Pilot Uygulama Lideri</p>
-            </div>
-            <!-- Üye 8 -->
-            <div class="team-member">
-                <div class="member-photo">Fotoğraf Alanı</div>
-                <h3 class="member-name">Arzu Güven</h3>
-                <p class="member-role">Literatür ve Bakım Süreçleri Lideri</p>
-            </div>
-        </div>
-    </section>
+            <!-- EKİP BÖLÜMÜ -->
+            <section id="ekip">
+                <h2 class="section-title" data-aos="fade-up">Proje Ekibi</h2>
+                <div class="team-container" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Üye 1 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Aydanur Akın</h3>
+                        <p class="member-role">Proje Lideri</p>
+                    </div>
+                    <!-- Üye 2 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Gökalp Eke</h3>
+                        <p class="member-role">Teknik Lider (AI)</p>
+                    </div>
+                    <!-- Üye 3 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Yasemin Uslu</h3>
+                        <p class="member-role">Optimizasyon Lideri</p>
+                    </div>
+                    <!-- Üye 4 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Özgür Sakallı</h3>
+                        <p class="member-role">Veri Analizi Lideri</p>
+                    </div>
+                    <!-- Üye 5 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Aleyna Şenel</h3>
+                        <p class="member-role">Görüntü İşleme Lideri</p>
+                    </div>
+                    <!-- Üye 6 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Zeliha Çelik</h3>
+                        <p class="member-role">Sistem Tasarım Lideri</p>
+                    </div>
+                    <!-- Üye 7 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Selin Efesoy</h3>
+                        <p class="member-role">Pilot Uygulama Lideri</p>
+                    </div>
+                    <!-- Üye 8 -->
+                    <div class="team-member">
+                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <h3 class="member-name">Arzu Güven</h3>
+                        <p class="member-role">Literatür ve Bakım Süreçleri Lideri</p>
+                    </div>
+                </div>
+            </section>
 
-    <!-- İÇİNDEKİLER -->
-    <section id="icindekiler">
-        <h2 class="section-title" data-aos="fade-up">İçindekiler</h2>
-        <ul class="toc-list" data-aos="fade-up" data-aos-delay="200">
-            <li>Bölüm 01: Proje Tanımı ve Hedefler</li>
-            <li>Bölüm 02: Veri Toplama ve Ön İşleme</li>
-            <li>Bölüm 03: Yapay Zeka Modelleme Süreci</li>
-            <li>Bölüm 04: Sonuçlar ve Kazanımlar</li>
-            <li>Bölüm 05: [Örnek İçerik Başlığı]</li>
-            <li>Bölüm 06: [Örnek İçerik Başlığı]</li>
-            <li>Bölüm 07: [Örnek İçerik Başlığı]</li>
-            <li>Bölüm 08: [Örnek İçerik Başlığı]</li>
-        </ul>
-    </section>
+            <!-- İÇİNDEKİLER -->
+            <section id="icindekiler">
+                <h2 class="section-title" data-aos="fade-up">İçindekiler</h2>
+                <ul class="toc-list" data-aos="fade-up" data-aos-delay="200">
+                    <li>01 Dağıtım Şebekelerinde Arıza Yöntemi ve Kestirimci Bakım Yaklaşımları</li>
+                    <li>02 SCADA, OMS Ve Şebeke Verilerinin Yapay Zeka İçin Hazırlanması</li>
+                    <li>03 Makine Öğrenmesi İle Arıza Tahmin Modelleri</li>
+                    <li>04 Dağıtım Şebekelerinde Risk Skorlama Modeli</li>
+                    <li>05 Bakım Optimizasyonu Ve Kaynak Planlama</li>
+                    <li>06 Dağıtım Bölgesi için Pilot Uygulama Ve SAIDI – SAIFI Analizi</li>
+                    <li>07 Görüntü İşleme İle Arıza Tespiti</li>
+                    <li>08 Yapay Zeka Destekli Önleyici Bakım Mimarisi</li>
+                </ul>
+            </section>
 
-    <!-- BÖLÜM 01 -->
-    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
-        <div class="huge-number">01</div>
-        <div class="fluid-content">
-            <h2 class="fluid-title">Proje Tanımı ve Hedefler</h2>
-            <ul class="fluid-list">
-                <li>Elektrik dağıtım şebekelerindeki arızaların önceden tespit edilmesi ve bakım süreçlerinin optimize edilmesi hedeflenmektedir.</li>
-                <li>Müşteri memnuniyetini artırmak ve kesinti sürelerini (SAIDI/SAIFI) en aza indirmek ana odak noktasıdır.</li>
-                <li>Bakım maliyetlerinde %20 oranında tasarruf sağlanması öngörülmektedir.</li>
-                <li>Enerjisa'nın sürdürülebilirlik hedeflerine teknolojik altyapı ile katkı sağlanacaktır.</li>
-            </ul>
-        </div>
-        <div class="fluid-media">
-            [Görsel / Grafik / Tablo Alanı - Yer Tutucu]
-        </div>
-    </section>
+            <!-- BÖLÜM 01 -->
+            <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+                <div class="huge-number">01</div>
+                <div class="fluid-content">
+                    <h2 class="fluid-title">Proje Tanımı ve Hedefler</h2>
+                    <ul class="fluid-list">
+                        <li>Elektrik dağıtım şebekelerindeki arızaların önceden tespit edilmesi ve bakım süreçlerinin
+                            optimize edilmesi hedeflenmektedir.</li>
+                        <li>Müşteri memnuniyetini artırmak ve kesinti sürelerini (SAIDI/SAIFI) en aza indirmek ana odak
+                            noktasıdır.</li>
+                        <li>Bakım maliyetlerinde %20 oranında tasarruf sağlanması öngörülmektedir.</li>
+                        <li>Enerjisa'nın sürdürülebilirlik hedeflerine teknolojik altyapı ile katkı sağlanacaktır.</li>
+                    </ul>
+                </div>
+                <div class="fluid-media">
+                    [Görsel / Grafik / Tablo Alanı - Yer Tutucu]
+                </div>
+            </section>
 
-    <!-- BÖLÜM 02 -->
-    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
-        <div class="huge-number">02</div>
-        <div class="fluid-content">
-            <h2 class="fluid-title">Veri Toplama ve Ön İşleme</h2>
-            <ul class="fluid-list">
-                <li>Geçmiş 5 yıla ait arıza kayıtları ve meteorolojik veriler SCADA sistemlerinden çekilmiştir.</li>
-                <li>Eksik veya hatalı veriler, istatistiksel yöntemler kullanılarak temizlenmiş ve normalize edilmiştir.</li>
-                <li>Zaman serisi analizi için veriler günlük ve saatlik periyotlara ayrıştırılmıştır.</li>
-                <li>Özellik mühendisliği (Feature Engineering) adımlarıyla modele girecek en anlamlı değişkenler seçilmiştir.</li>
-            </ul>
-        </div>
-        <div class="fluid-media">
-            [Veri Akış Şeması / Tablo Alanı - Yer Tutucu]
-        </div>
-    </section>
+            <!-- BÖLÜM 02 -->
+            <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+                <div class="huge-number">02</div>
+                <div class="fluid-content">
+                    <h2 class="fluid-title">Veri Toplama ve Ön İşleme</h2>
+                    <ul class="fluid-list">
+                        <li>Geçmiş 5 yıla ait arıza kayıtları ve meteorolojik veriler SCADA sistemlerinden çekilmiştir.
+                        </li>
+                        <li>Eksik veya hatalı veriler, istatistiksel yöntemler kullanılarak temizlenmiş ve normalize
+                            edilmiştir.</li>
+                        <li>Zaman serisi analizi için veriler günlük ve saatlik periyotlara ayrıştırılmıştır.</li>
+                        <li>Özellik mühendisliği (Feature Engineering) adımlarıyla modele girecek en anlamlı değişkenler
+                            seçilmiştir.</li>
+                    </ul>
+                </div>
+                <div class="fluid-media">
+                    [Veri Akış Şeması / Tablo Alanı - Yer Tutucu]
+                </div>
+            </section>
 
-    <!-- BÖLÜM 03 -->
-    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
-        <div class="huge-number">03</div>
-        <div class="fluid-content">
-            <h2 class="fluid-title">Yapay Zeka Modelleme Süreci</h2>
-            <ul class="fluid-list">
-                <li>Random Forest, XGBoost ve LSTM gibi gelişmiş makine öğrenimi algoritmaları test edilmiştir.</li>
-                <li>Veri setinin %80'i eğitim (train), %20'si test aşaması için ayrılmıştır.</li>
-                <li>En iyi performansı gösteren model XGBoost olmuş olup, %88 oranında doğruluk (accuracy) elde edilmiştir.</li>
-                <li>Hiperparametre optimizasyonu ile modelin arıza tahmin süresi 48 saat öncesine çekilmiştir.</li>
-            </ul>
-        </div>
-        <div class="fluid-media">
-            [Model Performans Grafiği - Yer Tutucu]
-        </div>
-    </section>
+            <!-- BÖLÜM 03 -->
+            <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+                <div class="huge-number">03</div>
+                <div class="fluid-content">
+                    <h2 class="fluid-title">Yapay Zeka Modelleme Süreci</h2>
+                    <ul class="fluid-list">
+                        <li>Random Forest, XGBoost ve LSTM gibi gelişmiş makine öğrenimi algoritmaları test edilmiştir.
+                        </li>
+                        <li>Veri setinin %80'i eğitim (train), %20'si test aşaması için ayrılmıştır.</li>
+                        <li>En iyi performansı gösteren model XGBoost olmuş olup, %88 oranında doğruluk (accuracy) elde
+                            edilmiştir.</li>
+                        <li>Hiperparametre optimizasyonu ile modelin arıza tahmin süresi 48 saat öncesine çekilmiştir.
+                        </li>
+                    </ul>
+                </div>
+                <div class="fluid-media">
+                    [Model Performans Grafiği - Yer Tutucu]
+                </div>
+            </section>
 
-    <!-- BÖLÜM 04 -->
-    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
-        <div class="huge-number">04</div>
-        <div class="fluid-content">
-            <h2 class="fluid-title">Sonuçlar ve Kazanımlar</h2>
-            <ul class="fluid-list">
-                <li>Arızalar oluşmadan önce saha ekiplerine otomatik iş emirleri (iş emri) oluşturulabilmektedir.</li>
-                <li>Kestirimci bakım sayesinde transformatör patlamaları gibi kritik olayların önüne geçilmiştir.</li>
-                <li>Operasyonel verimlilikte gözle görülür artış sağlanmış ve saha personelinin iş yükü dengelenmiştir.</li>
-                <li>Proje, Enerjisa genelinde yaygınlaştırılabilecek ölçeklenebilir bir yapıya kavuşturulmuştur.</li>
-            </ul>
-        </div>
-        <div class="fluid-media">
-            [Kazanım Özeti / Sonuç Tablosu - Yer Tutucu]
-        </div>
-    </section>
+            <!-- BÖLÜM 04 -->
+            <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+                <div class="huge-number">04</div>
+                <div class="fluid-content">
+                    <h2 class="fluid-title">Sonuçlar ve Kazanımlar</h2>
+                    <ul class="fluid-list">
+                        <li>Arızalar oluşmadan önce saha ekiplerine otomatik iş emirleri (iş emri)
+                            oluşturulabilmektedir.</li>
+                        <li>Kestirimci bakım sayesinde transformatör patlamaları gibi kritik olayların önüne
+                            geçilmiştir.</li>
+                        <li>Operasyonel verimlilikte gözle görülür artış sağlanmış ve saha personelinin iş yükü
+                            dengelenmiştir.</li>
+                        <li>Proje, Enerjisa genelinde yaygınlaştırılabilecek ölçeklenebilir bir yapıya kavuşturulmuştur.
+                        </li>
+                    </ul>
+                </div>
+                <div class="fluid-media">
+                    [Kazanım Özeti / Sonuç Tablosu - Yer Tutucu]
+                </div>
+            </section>
 
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        // AOS Animasyon Kütüphanesini Başlat
-        AOS.init({
-            once: true, // Animasyonlar sadece bir kez çalışsın
-            offset: 100, // Tetiklenme noktası
-            duration: 800, // Animasyon süresi (ms)
-            easing: 'ease-out-cubic'
-        });
-
-        // Sticky Logo — passive scroll + rAF to avoid layout thrashing
-        (function () {
-            const logo = document.getElementById('stickyLogo');
-            let rafPending = false;
-            window.addEventListener('scroll', () => {
-                if (rafPending) return;
-                rafPending = true;
-                requestAnimationFrame(() => {
-                    rafPending = false;
-                    if (window.scrollY > window.innerHeight) {
-                        logo.classList.add('show');
-                    } else {
-                        logo.classList.remove('show');
-                    }
+            <!-- AOS JS -->
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            <script>
+                // AOS Animasyon Kütüphanesini Başlat
+                AOS.init({
+                    once: true, // Animasyonlar sadece bir kez çalışsın
+                    offset: 100, // Tetiklenme noktası
+                    duration: 800, // Animasyon süresi (ms)
+                    easing: 'ease-out-cubic'
                 });
-            }, { passive: true });
-        })();
-    </script>
 
-    </div><!-- /#scale-container -->
-    <!-- SCALE SCRIPT -->
-    <script>
-        function getViewportHeight() {
-            if (window.visualViewport) return window.visualViewport.height;
-            return window.innerHeight;
-        }
+                // Sticky Logo — passive scroll + rAF to avoid layout thrashing
+                (function () {
+                    const logo = document.getElementById('stickyLogo');
+                    let rafPending = false;
+                    window.addEventListener('scroll', () => {
+                        if (rafPending) return;
+                        rafPending = true;
+                        requestAnimationFrame(() => {
+                            rafPending = false;
+                            if (window.scrollY > window.innerHeight) {
+                                logo.classList.add('show');
+                            } else {
+                                logo.classList.remove('show');
+                            }
+                        });
+                    }, { passive: true });
+                })();
+            </script>
 
-        // Cached layout values — computed only on resize/load, never on scroll
-        window._layoutCache = { heroH: 0, slideH: 0, stops: [] };
+        </div>
+        <script>
 
-        function scaleWrapper() {
-            const wrapper   = document.getElementById('desktop-wrapper');
-            const container = document.getElementById('scale-container');
-            const DESIGN_WIDTH  = 1200;
-            const DESIGN_HEIGHT = 675;   // fixed design height for sections (16:9)
-            const vw = window.innerWidth;
-
-            // ── 1. Compute scale (never > 1) ──
-            const scale = Math.min(1, vw / DESIGN_WIDTH);
-
-            // ── 2. Hero design height = image's natural ratio (16:9) ──
-            //    Same as DESIGN_HEIGHT — image never over-zooms, never crops.
-            //    On non-16:9 screens hero won't fill 100vh, but that's acceptable
-            //    (priority: image integrity over filling the screen).
-            const heroDesignH = DESIGN_HEIGHT;  // 675px = 1200 * 9/16
-
-            // ── 3. Apply scale & center ──
-            wrapper.style.transformOrigin = 'top center';
-            wrapper.style.transform       = `scale(${scale})`;
-            if (scale < 1) {
-                wrapper.style.marginLeft  = `${(vw - DESIGN_WIDTH) / 2}px`;
-                wrapper.style.marginRight = '0';
-            } else {
-                wrapper.style.marginLeft  = 'auto';
-                wrapper.style.marginRight = 'auto';
-            }
-
-            // ── 4. CSS var for sections fallback ──
-            document.documentElement.style.setProperty('--slide-h', `${DESIGN_HEIGHT}px`);
-
-            // ── 5a. Set hero height to fill exact viewport ──
-            const hero = document.getElementById('hero');
-            if (hero) {
-                hero.style.height    = `${heroDesignH}px`;
-                hero.style.minHeight = `${heroDesignH}px`;
-            }
-
-            // ── 5b. Other sections: fixed DESIGN_HEIGHT (untouched per request) ──
-            document.querySelectorAll('section').forEach(sec => {
-                sec.style.minHeight      = `${DESIGN_HEIGHT}px`;
-                sec.style.display        = 'flex';
-                sec.style.flexDirection  = 'column';
-                sec.style.justifyContent = 'center';
-            });
-            document.querySelectorAll('.fluid-section').forEach(sec => {
-                sec.style.minHeight = `${DESIGN_HEIGHT}px`;
-            });
-
-            // ── 6. Recompute & cache snap stops (hero visual h + section visual h) ──
-            const heroVisualH   = heroDesignH * scale;   // = vh exactly
-            const sectionVisualH = DESIGN_HEIGHT * scale;
-            const sectionCount  = document.querySelectorAll('section').length;
-            const stops = [0];
-            for (let i = 0; i < sectionCount; i++) {
-                stops.push(Math.round(heroVisualH + i * sectionVisualH));
-            }
-            window._layoutCache = { heroH: heroVisualH, slideH: sectionVisualH, stops };
-
-            // ── 7. Update container visual height ──
-            requestAnimationFrame(() => requestAnimationFrame(() => {
-                const finalH = wrapper.scrollHeight * scale;
-                container.style.height = `${finalH}px`;
-                container.style.width  = `${vw}px`;
-            }));
-        }
-
-        window.addEventListener('resize', scaleWrapper);
-        if (window.visualViewport) {
-            window.visualViewport.addEventListener('resize', scaleWrapper);
-        }
-        document.addEventListener('DOMContentLoaded', scaleWrapper);
-        window.addEventListener('load', scaleWrapper);
-        scaleWrapper();  // initial call
-    </script>
-    <script>
-        /* ══════════════════════════════════════════════
-           JS SCROLL-SNAP  (scale-safe, viewport-based)
-           ══════════════════════════════════════════════
-           Because #desktop-wrapper is transformed with
-           scale(), CSS scroll-snap sees design-space
-           coords and snaps to wrong positions.
-           We implement snap manually:
-           • debounce the scroll event
-           • find the nearest section boundary
-             (each section = 1 × real viewport height)
-           • smooth-scroll there if within 40% of the edge
-        ═══════════════════════════════════════════════ */
-        // JS SCROLL-SNAP (scale-safe, uses cached stops from scaleWrapper)
-        (function () {
-            let snapTimer = null;
-            let isSnapping = false;
-
-            function doSnap() {
-                if (isSnapping) return;
-                const { stops } = window._layoutCache;
-                if (!stops || stops.length === 0) return;
-
-                const y  = window.scrollY;
-                // Find nearest cached stop (no DOM reads)
-                let nearest = stops[0];
-                for (const s of stops) {
-                    if (Math.abs(s - y) < Math.abs(nearest - y)) nearest = s;
-                }
-
-                // Snap only if within 12% of a slide boundary (proximity feel).
-                // If the user does a small scroll and is outside this threshold, we leave them alone.
-                const slideH = window._layoutCache.slideH || window.innerHeight;
-                if (Math.abs(nearest - y) < slideH * 0.12) {
-                    isSnapping = true;
-                    window.scrollTo({ top: nearest, behavior: 'smooth' });
-                    setTimeout(() => { isSnapping = false; }, 900);
-                }
-            }
-
-            window.addEventListener('scroll', () => {
-                clearTimeout(snapTimer);
-                const delay = ('ontouchstart' in window) ? 220 : 150;
-                snapTimer = setTimeout(doSnap, delay);
-            }, { passive: true });
-        })();
-
-        /* ══════════════════════════════════════════════
-           INTERSECTION OBSERVER — section reveal
-           Each section floats up + fades in the moment
-           it enters the viewport (complementing AOS).
-        ═══════════════════════════════════════════════ */
-        (function () {
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        // Don't unobserve — lets re-entry also animate if needed
-                    }
+            /* ══════════════════════════════════════════════
+               INTERSECTION OBSERVER — section reveal
+               Each section floats up + fades in the moment
+               it enters the viewport (complementing AOS).
+            ═══════════════════════════════════════════════ */
+            (function () {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            // Don't unobserve — lets re-entry also animate if needed
+                        }
+                    });
+                }, {
+                    threshold: 0.10   // trigger when 10% of the section is visible
                 });
-            }, {
-                threshold: 0.10   // trigger when 10% of the section is visible
-            });
 
-            document.querySelectorAll('section').forEach(sec => io.observe(sec));
-        })();
-    </script>
+                document.querySelectorAll('section').forEach(sec => io.observe(sec));
+            })();
+        </script>
 </body>
+
 </html>
