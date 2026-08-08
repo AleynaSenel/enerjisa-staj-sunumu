@@ -474,23 +474,7 @@
             margin-top: 0;
         }
 
-        /* STICKY LOGO */
-        .sticky-logo {
-            position: fixed;
-            top: 20px;
-            left: 40px;
-            width: 280px !important;
-            height: auto;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
 
-        .sticky-logo.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
 
         /* WRAPPER CSS */
         html {
@@ -513,11 +497,141 @@
             margin: 0 auto;
             background-image: radial-gradient(circle at 50% 50%, rgba(253, 216, 53, 0.05) 0%, var(--bg-color) 60%);
         }
+
+        /* =========================================
+           RESPONSIVE MEDIA QUERIES (MOBILE-FRIENDLY)
+           ========================================= */
+
+        /* Genel Resim Taşma Önlemi */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Hero arka planı zaten %100 yükseklik ve genişlik kaplıyor, istisna tutulur */
+        .hero-bg {
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Yatay kaymayı (taşmayı) kökten engelle */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        /* --- TABLET VE DAR EKRANLAR (max-width: 768px) --- */
+        @media (max-width: 768px) {
+            /* Bölüm boşluklarını daralt */
+            section {
+                padding: 40px 20px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 32px;
+            }
+
+            /* Yan yana (Row) duran kutuları alt alta (Column) yap */
+            .fluid-section, 
+            .fluid-section:nth-child(even) {
+                flex-direction: column !important;
+                gap: 32px;
+                padding: 0 16px;
+                margin-bottom: 80px;
+            }
+
+            .fluid-content {
+                padding: 16px 0 0 0;
+            }
+
+            .fluid-media {
+                min-height: 240px;
+                padding: 24px;
+            }
+
+            /* Başlıkları ve arkadaki dev sayıyı ortala ve küçült */
+            .fluid-title {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+
+            .fluid-title::after {
+                margin: 12px auto;
+            }
+
+            .fluid-section .huge-number, 
+            .fluid-section:nth-child(even) .huge-number {
+                font-size: 5rem;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            /* Ekip grid yapısını 2 sütuna indir ve içeriklerini daralt */
+            .team-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .team-member {
+                padding: 20px 8px 16px;
+                border-radius: 12px;
+            }
+
+            .member-photo {
+                width: 60px;
+                height: 60px;
+                margin-bottom: 12px;
+                font-size: 0.65rem;
+                border-width: 2px;
+            }
+
+            .member-name {
+                font-size: 0.85rem;
+                margin-bottom: 4px;
+            }
+
+            .member-role {
+                font-size: 0.75rem;
+            }
+
+            /* İçindekiler listesini daralt */
+            .toc-list {
+                padding: 8px 16px;
+            }
+
+            .toc-list li {
+                font-size: 0.95rem;
+                padding: 14px 0;
+            }
+
+
+        }
+
+        /* --- KÜÇÜK TELEFONLAR (max-width: 480px) --- */
+        @media (max-width: 480px) {
+            .section-title {
+                font-size: 1.6rem;
+            }
+
+            .fluid-title {
+                font-size: 1.5rem;
+            }
+
+            .fluid-list li {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+
+
+
+        }
     </style>
 </head>
 
 <body>
-    <img src="TOROSLAR_YENI_LOGO_MART2026.png" alt="Toroslar Logo" class="sticky-logo" id="stickyLogo">
 
     <div id="desktop-wrapper">
 
@@ -697,24 +811,6 @@
                     duration: 800, // Animasyon süresi (ms)
                     easing: 'ease-out-cubic'
                 });
-
-                // Sticky Logo — passive scroll + rAF to avoid layout thrashing
-                (function () {
-                    const logo = document.getElementById('stickyLogo');
-                    let rafPending = false;
-                    window.addEventListener('scroll', () => {
-                        if (rafPending) return;
-                        rafPending = true;
-                        requestAnimationFrame(() => {
-                            rafPending = false;
-                            if (window.scrollY > window.innerHeight) {
-                                logo.classList.add('show');
-                            } else {
-                                logo.classList.remove('show');
-                            }
-                        });
-                    }, { passive: true });
-                })();
             </script>
 
         </div>
