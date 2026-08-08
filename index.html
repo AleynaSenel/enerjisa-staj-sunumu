@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapay Zeka Destekli Arıza Tahmini ve Kestirimci Bakım</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Enerjisa Colors */
+            --enerjisa-yellow: #fdb913;
+            --enerjisa-navy: #002c5f;
+            --bg-color: #FAF9F6;
+            --card-bg: #ffffff;
+            --text-main: #212529;
+            --text-muted: #6c757d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            background-image: radial-gradient(circle at 50% 50%, rgba(253, 216, 53, 0.05) 0%, var(--bg-color) 60%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HERO SECTION */
+        #hero {
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-image: url('Teams Arka Plan.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            color: #0A2540;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            color: #0A2540;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: var(--enerjisa-navy);
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 32px;
+            height: 32px;
+            margin-top: 10px;
+            fill: var(--enerjisa-yellow);
+            stroke: var(--enerjisa-navy);
+            stroke-width: 2;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+
+        /* SECTION COMMON */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            color: var(--enerjisa-navy);
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--enerjisa-yellow);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* TEAM SECTION */
+        .team-container {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 5px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--enerjisa-yellow) var(--bg-color);
+        }
+        
+        .team-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        .team-container::-webkit-scrollbar-thumb {
+            background-color: var(--enerjisa-yellow);
+            border-radius: 4px;
+        }
+
+        .team-member {
+            flex: 0 0 auto;
+            width: 200px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-bottom: 4px solid var(--enerjisa-navy);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            border-bottom-color: var(--enerjisa-yellow);
+        }
+
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            margin: 0 auto 15px;
+            border: 3px solid var(--enerjisa-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .member-name {
+            color: var(--enerjisa-navy);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* TOC SECTION */
+        .toc-list {
+            list-style: none;
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--enerjisa-yellow);
+        }
+
+        .toc-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .toc-list li:last-child {
+            border-bottom: none;
+        }
+
+        .toc-list li::before {
+            content: '•';
+            color: var(--enerjisa-navy);
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+
+        /* FLUID SECTIONS (APPLE STYLE) */
+        .fluid-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 120px;
+            position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .huge-number {
+            position: absolute;
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--enerjisa-yellow);
+            opacity: 0.15;
+            top: -50px;
+            left: 10px;
+            z-index: -1;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        .fluid-content {
+            flex: 1;
+            padding: 20px 0;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .fluid-title {
+            color: #1E293B;
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .fluid-list {
+            list-style: none;
+            color: #1E293B;
+        }
+
+        .fluid-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        .fluid-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--enerjisa-yellow);
+            border-radius: 50%;
+        }
+
+        .fluid-media {
+            flex: 1;
+            width: 100%;
+            min-height: 350px;
+            background-color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 20px;
+            z-index: 2;
+            margin-top: 30px;
+        }
+
+        /* DESKTOP STYLES */
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+            .team-container {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 30px;
+                overflow-x: visible;
+                padding: 0;
+            }
+            .team-member {
+                width: auto;
+            }
+            .fluid-section {
+                flex-direction: row;
+                gap: 80px;
+                padding: 0 40px;
+            }
+            .fluid-section:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            .fluid-section:nth-child(even) .huge-number {
+                left: auto;
+                right: 20px;
+            }
+            .fluid-content {
+                padding: 40px 0;
+            }
+            .fluid-media {
+                margin-top: 0;
+            }
+        }
+
+        /* STICKY LOGO */
+        .sticky-logo {
+            position: fixed;
+            top: 20px;
+            left: 40px;
+            width: 280px !important;
+            height: auto;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .sticky-logo.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-logo {
+                width: 180px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="TOROSLAR_YENI_LOGO_MART2026.png" alt="Toroslar Logo" class="sticky-logo" id="stickyLogo">
+
+    <!-- HERO SECTION -->
+    <header id="hero">
+        <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
+            <h1 class="hero-title">Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım Şebekelerine Uygulanması</h1>
+            <p class="hero-subtitle">Enerjisa Toroslar EDAŞ Staj Projesi Sunumu</p>
+        </div>
+        
+        <div class="scroll-indicator">
+            Detaylar için kaydırın
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- EKİP BÖLÜMÜ -->
+    <section id="ekip">
+        <h2 class="section-title" data-aos="fade-up">Proje Ekibi</h2>
+        <div class="team-container" data-aos="fade-up" data-aos-delay="200">
+            <!-- Üye 1 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Aydanur Akın</h3>
+                <p class="member-role">Proje Lideri</p>
+            </div>
+            <!-- Üye 2 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Gökalp Eke</h3>
+                <p class="member-role">Teknik Lider (AI)</p>
+            </div>
+            <!-- Üye 3 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Yasemin Uslu</h3>
+                <p class="member-role">Optimizasyon Lideri</p>
+            </div>
+            <!-- Üye 4 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Özgür Sakallı</h3>
+                <p class="member-role">Veri Analizi Lideri</p>
+            </div>
+            <!-- Üye 5 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Aleyna Şenel</h3>
+                <p class="member-role">Görüntü İşleme Lideri</p>
+            </div>
+            <!-- Üye 6 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Zeliha Çelik</h3>
+                <p class="member-role">Sistem Tasarım Lideri</p>
+            </div>
+            <!-- Üye 7 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Selin Efesoy</h3>
+                <p class="member-role">Pilot Uygulama Lideri</p>
+            </div>
+            <!-- Üye 8 -->
+            <div class="team-member">
+                <div class="member-photo">Fotoğraf Alanı</div>
+                <h3 class="member-name">Arzu Güven</h3>
+                <p class="member-role">Literatür ve Bakım Süreçleri Lideri</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- İÇİNDEKİLER -->
+    <section id="icindekiler">
+        <h2 class="section-title" data-aos="fade-up">İçindekiler</h2>
+        <ul class="toc-list" data-aos="fade-up" data-aos-delay="200">
+            <li>Bölüm 01: Proje Tanımı ve Hedefler</li>
+            <li>Bölüm 02: Veri Toplama ve Ön İşleme</li>
+            <li>Bölüm 03: Yapay Zeka Modelleme Süreci</li>
+            <li>Bölüm 04: Sonuçlar ve Kazanımlar</li>
+            <li>Bölüm 05: [Örnek İçerik Başlığı]</li>
+            <li>Bölüm 06: [Örnek İçerik Başlığı]</li>
+            <li>Bölüm 07: [Örnek İçerik Başlığı]</li>
+            <li>Bölüm 08: [Örnek İçerik Başlığı]</li>
+        </ul>
+    </section>
+
+    <!-- BÖLÜM 01 -->
+    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+        <div class="huge-number">01</div>
+        <div class="fluid-content">
+            <h2 class="fluid-title">Proje Tanımı ve Hedefler</h2>
+            <ul class="fluid-list">
+                <li>Elektrik dağıtım şebekelerindeki arızaların önceden tespit edilmesi ve bakım süreçlerinin optimize edilmesi hedeflenmektedir.</li>
+                <li>Müşteri memnuniyetini artırmak ve kesinti sürelerini (SAIDI/SAIFI) en aza indirmek ana odak noktasıdır.</li>
+                <li>Bakım maliyetlerinde %20 oranında tasarruf sağlanması öngörülmektedir.</li>
+                <li>Enerjisa'nın sürdürülebilirlik hedeflerine teknolojik altyapı ile katkı sağlanacaktır.</li>
+            </ul>
+        </div>
+        <div class="fluid-media">
+            [Görsel / Grafik / Tablo Alanı - Yer Tutucu]
+        </div>
+    </section>
+
+    <!-- BÖLÜM 02 -->
+    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+        <div class="huge-number">02</div>
+        <div class="fluid-content">
+            <h2 class="fluid-title">Veri Toplama ve Ön İşleme</h2>
+            <ul class="fluid-list">
+                <li>Geçmiş 5 yıla ait arıza kayıtları ve meteorolojik veriler SCADA sistemlerinden çekilmiştir.</li>
+                <li>Eksik veya hatalı veriler, istatistiksel yöntemler kullanılarak temizlenmiş ve normalize edilmiştir.</li>
+                <li>Zaman serisi analizi için veriler günlük ve saatlik periyotlara ayrıştırılmıştır.</li>
+                <li>Özellik mühendisliği (Feature Engineering) adımlarıyla modele girecek en anlamlı değişkenler seçilmiştir.</li>
+            </ul>
+        </div>
+        <div class="fluid-media">
+            [Veri Akış Şeması / Tablo Alanı - Yer Tutucu]
+        </div>
+    </section>
+
+    <!-- BÖLÜM 03 -->
+    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+        <div class="huge-number">03</div>
+        <div class="fluid-content">
+            <h2 class="fluid-title">Yapay Zeka Modelleme Süreci</h2>
+            <ul class="fluid-list">
+                <li>Random Forest, XGBoost ve LSTM gibi gelişmiş makine öğrenimi algoritmaları test edilmiştir.</li>
+                <li>Veri setinin %80'i eğitim (train), %20'si test aşaması için ayrılmıştır.</li>
+                <li>En iyi performansı gösteren model XGBoost olmuş olup, %88 oranında doğruluk (accuracy) elde edilmiştir.</li>
+                <li>Hiperparametre optimizasyonu ile modelin arıza tahmin süresi 48 saat öncesine çekilmiştir.</li>
+            </ul>
+        </div>
+        <div class="fluid-media">
+            [Model Performans Grafiği - Yer Tutucu]
+        </div>
+    </section>
+
+    <!-- BÖLÜM 04 -->
+    <section class="fluid-section" data-aos="fade-up" data-aos-offset="200">
+        <div class="huge-number">04</div>
+        <div class="fluid-content">
+            <h2 class="fluid-title">Sonuçlar ve Kazanımlar</h2>
+            <ul class="fluid-list">
+                <li>Arızalar oluşmadan önce saha ekiplerine otomatik iş emirleri (iş emri) oluşturulabilmektedir.</li>
+                <li>Kestirimci bakım sayesinde transformatör patlamaları gibi kritik olayların önüne geçilmiştir.</li>
+                <li>Operasyonel verimlilikte gözle görülür artış sağlanmış ve saha personelinin iş yükü dengelenmiştir.</li>
+                <li>Proje, Enerjisa genelinde yaygınlaştırılabilecek ölçeklenebilir bir yapıya kavuşturulmuştur.</li>
+            </ul>
+        </div>
+        <div class="fluid-media">
+            [Kazanım Özeti / Sonuç Tablosu - Yer Tutucu]
+        </div>
+    </section>
+
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // AOS Animasyon Kütüphanesini Başlat
+        AOS.init({
+            once: true, // Animasyonlar sadece bir kez çalışsın
+            offset: 100, // Tetiklenme noktası
+            duration: 800, // Animasyon süresi (ms)
+            easing: 'ease-out-cubic'
+        });
+
+        // Sticky Logo Logic
+        window.addEventListener('scroll', () => {
+            const logo = document.getElementById('stickyLogo');
+            // Show logo only when scrolled past the first viewport height
+            if (window.scrollY > window.innerHeight) {
+                logo.classList.add('show');
+            } else {
+                logo.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
