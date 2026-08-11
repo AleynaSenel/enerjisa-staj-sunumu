@@ -718,6 +718,99 @@
 
 
         }
+
+        /* =========================================
+           KARANLIK MOD (DARK MODE) DESTEĞİ
+           ========================================= */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121212;
+                --card-bg: #1E1E1E;
+                --text-main: #F1F1F1;
+                --text-muted: #A0A0A0;
+            }
+
+            body {
+                background-color: var(--bg-color);
+                color: var(--text-main);
+            }
+
+            .hero-title, .hero-subtitle {
+                color: #FFFFFF;
+                text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8);
+            }
+
+            .scroll-indicator {
+                color: #FFFFFF;
+            }
+            .scroll-indicator svg {
+                stroke: #FFFFFF;
+            }
+
+            .section-title, .fluid-title, .member-name {
+                color: var(--enerjisa-yellow);
+            }
+
+            .fluid-list {
+                color: var(--text-main);
+            }
+
+            .team-member, .toc-list {
+                background: var(--card-bg);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+                border-color: rgba(255, 255, 255, 0.1);
+            }
+
+            .member-photo {
+                background: #2A2A2A;
+                border-color: var(--enerjisa-yellow);
+                color: var(--text-main);
+            }
+
+            .member-role {
+                color: var(--text-muted);
+            }
+
+            .social-links a[title="GitHub"] {
+                color: #FFFFFF;
+            }
+
+            .toc-list li {
+                color: var(--text-main);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .fluid-media {
+                background: linear-gradient(135deg, rgba(253, 185, 19, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+                border: 1.5px solid rgba(255, 255, 255, 0.1);
+                color: rgba(255, 255, 255, 0.4);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            }
+
+            .back-to-toc {
+                background: rgba(30, 30, 30, 0.8);
+                color: var(--enerjisa-yellow);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            #canli-demo > div {
+                background: var(--card-bg) !important;
+                border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+                box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5) !important;
+            }
+
+            /* Buton için karanlık mod uyarlaması */
+            .demo-button {
+                background-color: var(--enerjisa-yellow);
+                color: #121212 !important;
+                box-shadow: 0 4px 15px rgba(253, 185, 19, 0.3);
+            }
+
+            .demo-button:hover {
+                background-color: #e5a70f;
+                box-shadow: 0 8px 25px rgba(253, 185, 19, 0.5);
+            }
+        }
     </style>
 </head>
 
