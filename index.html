@@ -72,19 +72,41 @@
         /* Responsive text sizes maintaining exact proportion to the 16:9 box */
         .hero-title {
             color: #0A2540;
-            font-size: 2.26cqw; /* Matches 1.7rem at 1200px */
+            font-size: 3.2cqw; /* Increased size for better readability */
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1.25;
             margin-bottom: 1.33cqw;
             text-align: center;
+            text-shadow: 0px 4px 15px rgba(255, 255, 255, 0.6);
         }
 
         .hero-subtitle {
             color: #0A2540;
-            font-size: 1.66cqw; /* Matches 1.25rem at 1200px */
-            font-weight: 500;
-            opacity: 0.9;
+            font-size: 1.8cqw; /* Increased size */
+            font-weight: 600;
+            opacity: 0.95;
+            margin-bottom: 2cqw;
+        }
+
+        .demo-button {
+            display: inline-block;
+            padding: 1cqw 2.5cqw;
+            background-color: var(--enerjisa-navy);
+            color: #ffffff !important;
+            font-size: 1.2cqw;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 44, 95, 0.3);
+            margin-top: 1cqw;
+        }
+
+        .demo-button:hover {
+            background-color: #004085;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 44, 95, 0.5);
         }
 
         .scroll-indicator {
@@ -707,12 +729,12 @@
             <header id="hero">
                 <img src="teams-arka-plan.png" alt="Hero arka planı" class="hero-bg">
                 <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
-                    <h1 class="hero-title">Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım
-                        Şebekelerine Uygulanması</h1>
+                    <h1 class="hero-title">Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım Şebekelerine Uygulanması</h1>
                     <p class="hero-subtitle">Enerjisa Toroslar EDAŞ Staj Projesi Sunumu</p>
+                    <a href="#canli-demo" class="demo-button">Canlı Demoyu İncele</a>
                 </div>
                 <div class="scroll-indicator">
-                    Detaylar için kaydırın
+                    Sunum detayları için kaydırın
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
@@ -967,6 +989,20 @@
                 </div>
                 <div class="fluid-media">
                     [Sistem Mimarisi Şeması - Yer Tutucu]
+                </div>
+            </section>
+
+            <!-- CANLI DEMO BÖLÜMÜ -->
+            <section id="canli-demo" style="width: 100%; padding: 0 40px; max-width: 1200px; margin: 0 auto 120px auto; scroll-margin-top: 80px;" data-aos="fade-up" data-aos-offset="200">
+                <h2 class="section-title">Canlı Demo / Arıza Analiz Paneli</h2>
+                <div style="width: 100%; border-radius: 12px; overflow: hidden; box-shadow: 0 12px 32px rgba(0, 44, 95, 0.08); background: #fff; border: 1.5px solid rgba(0, 44, 95, 0.10);">
+                    <iframe 
+                      src="https://spark-dashboard-33.streamlit.app/?embed=true" 
+                      width="100%" 
+                      height="850px" 
+                      style="border: none; border-radius: 12px; width: 100%; display: block;"
+                      title="Arıza Analiz Paneli">
+                    </iframe>
                 </div>
             </section>
 
