@@ -1,0 +1,1315 @@
+
+--- Slide 1 ---
+PROJE SUNUMU
+Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım Şebekelerine Uygulanması
+
+
+--- Slide 2 ---
+PROJE EKİBİ
+Ekibimiz
+
+[ Fotoğraf ]
+ Aydanur AKIN 
+ Proje Lideri 
+
+[ Fotoğraf ]
+ Gökalp EKE
+Teknik Lider
+
+ Yasemin USLU 
+   Optimizasyon Lideri
+
+[ Fotoğraf ]
+Özgür SAKALLI 
+        Veri Analizi Lideri
+
+Aleyna ŞENEL
+ Görüntü İşleme Lideri
+
+[ Fotoğraf ]
+Zeliha ÇELİK 
+     Sistem Tasarım Lideri 
+
+ Selin EFESOY 
+   Pilot Uygulama Lideri
+
+Arzu GÜVEN 
+   Literatür ve Bakım Süreçleri Lideri 
+
+--- Slide 3 ---
+İçindekiler
+01
+Dağıtım Şebekelerinde Arıza Yöntemi ve Kestirimci Bakım Yaklaşımları
+
+02
+SCADA, OMS Ve Şebeke Verilerinin Yapay Zeka İçin Hazırlanması
+
+03
+Makine Öğrenmesi İle Arıza Tahmin Modelleri
+
+04
+Dağıtım Şebekelerinde Risk Skorlama Modeli
+
+05
+Bakım Optimizasyonu Ve Kaynak Planlama
+
+06
+Dağıtım Bölgesi için Pilot Uygulama Ve SAIDI – SAIFI Analizi
+03
+
+07
+Görüntü İşleme İle Arıza Tespiti 
+
+08
+Canlı Şebeke İzleme Dashboard'u ve Sistem Mimari Tasarımı
+
+--- Slide 4 ---
+BÖLÜM
+01
+Dağıtım Şebekelerinde Arıza Yönetimi ve Kestirimci Bakım Yaklaşımı 
+Kesinti Sürelerini Düşürme
+Operasyonel  Verimlilik 
+Yapay Zeka Destekli Şebeke Güvenilirliği Stratejileri
+
+--- Slide 5 ---
+
+Şebeke Arıza Türleri ve Riskler
+
+
+
+
+
+• Meteorolojik Riskler: Yıldırım darbeleri, kar/buz yükü ve kuvvetli rüzgârlar.
+
+• Dış Etken Temasları: Ağaç dalı yaklaşması, kuş/hayvan kaynaklı arklar ve araç çarpmaları.
+
+
+Risk: Yaygın kesintiler ve şebeke güvenilirliğinin düşmesi 
+ 
+
+
+
+
+• Faz-Toprak Kısa Devreleri: Şebekedeki en yaygın yüksek akımlı arızalar.
+
+• İletken & Fiziksel Kopmalar: Aşırı yüklenme, fırtına ve mekanik yorulma kaynaklı hat düşmeleri.
+
+
+Risk: Can ve mal güvenilirliği tehlikesi, arıza süresinin uzaması 
+
+
+
+
+• Yeraltı Kablo Yaşlanması: Nem girişi ve su ağaçlanması (water treeing) ile delinmeler.
+
+• Trafo & Hücre Arızaları: İzolasyon yağı bozulması, kısmi deşarj ve korozyon.
+
+
+Risk: Kesinti sürelerinin artması ve onarım maliyetlerinin yükselmesi
+Elektriksel & Mekanik 
+
+Ekipman & İzolasyon
+Çevresel & İklimsel
+BÖLÜM 01 ·  Dağıtım şebekelerinde görülen başlıca arıza türleri ve oluşturduğu riskler
+
+
+--- Slide 6 ---
+
+
+Arıza Türlerinin Dağılımı 
+Tüm kesintiler içindeki pay (%)
+BÖLÜM 01 ·  Veri Çıktısı
+
+
+
+Kırsal
+
+Toplam içindeki pay:
+%90,1
+Kentsel
+
+Toplam içindeki pay:
+%9,9
+
+Arıza kaynakları arasında ağaç teması %21,3 ile en paya sahiptir. Kırsal bölgelerdeki etki, kentsel bölgelere kıyasla daha yüksektir. 
+
+--- Slide 7 ---
+
+ Modern Arıza Yönetim Sistemi (OMS) 
+
+
+
+
+
+
+
+En yakın saha ekibini GPS ile yönlendirerek ortalama tamir ve müdahale süresini (MTTR) %35 oranında kısaltma.
+Mobil Saha Ekibi Yönetimi
+Arızalı bölgeyi saniyeler içinde izole ederek sağlıklı abonelere alternatif hatlardan otomatik yeniden enerji sağlama.
+FLISR Otomasyonu
+SCADA & OMS Entegrasyonu
+Saha sensörlerinden gelen sinyallerle arıza konumunu metre hassasiyetinde tespit etme ve otomatik iş emri oluşturma.
+BÖLÜM 01 ·  SCADA, FLISR ve GPS Entegrasyonu ​
+
+
+--- Slide 8 ---
+
+Bakım Yaklaşımları Karşılaştırması 
+
+
+
+
+
+
+Düzeltici (Reaktif) Bakım
+Kestirimci (Predictive) Bakım
+Müdahale Zamanı: Arıza oluştuktan sonra acil onarım.
+Maliyet: Yüksek plansız duruş ve acil ekipman değişim maliyeti.
+Şebeke Etkisi: Müşteri memnuniyetsizliği, yüksek SAIDI / SAIFI oranları.
+Risk: İkincil ekipman hasarları ve iş güvenliği riskleri.
+Yöntem: Sensör verileri, termal, titreşim ve kısmi deşarj analizi.
+Şebeke Etkisi: Kesintisiz enerji sağlama, maksimum şebeke güvenirliği.
+Maliyet: Optimum bakım bütçesi ve uzatılmış ekipman ömrü.
+Müdahale Zamanı: Anomali tespit edildiğinde planlı müdahale.
+BÖLÜM 01 ·  Reaktif Bakım Yaklaşımları ile Kestirimci Bakımın Operasyonel ve Finansal Avantajları ​
+
+
+--- Slide 9 ---
+
+Kestirimci Bakımın Gücü 
+
+
+
+
+
+
+%40
+Plansız Kesintilerde Düşüş
+%30
+Bakım Maliyeti Tasarrufu
+
+
+
+
+Yönetici Aksiyon Planı
+Kestirimci bakım ve akıllı arıza yönetiminin entegre edilmesiyle elde edilecek temel stratejik çıktılar:
+SAIDI & SAIFI İyileşmesi: Müşteri memnuniyetini artırma ve EPDK regülasyon kalitesine tam uyum.
+
+Saha Sensör Altyapısı: Kritik trafo ve hatlarda IoT tabanlı izleme sensörlerinin yaygınlaştırılması.
+Akıllı Bütçe Yönetimi: Reaktif acil giderlerin engellenerek kaynağın dijital teknolojilere aktarılması.
+BÖLÜM 01 ·  SAIDI ve SAIFI İyileşmesi , Bütçe Optiminizasyonu ve Karar Vericiler İçin Aksiyon Planı
+
+
+
+
+ABD Enerji Bakanlığı Kestirimci bakımın sağladığı verimlilik oranları
+(U.S. Department of Energy)
+
+--- Slide 10 ---
+BÖLÜM
+02
+SCADA, OMS ve Şebeke Verilerinin Yapay Zeka İçin Hazırlanması
+Veri Temizleme Yöntemleri
+Eksik Veri Analizi
+Veri Standardizasyonu
+
+--- Slide 11 ---
+BÖLÜM 02  ·  VERİ HAZIRLAMA
+Ne Ürettim?
+
+
+
+
+DOĞRULAMA
+CEER · 39 Avrupa ülkesi
+SAIDI
+9 – 4.982 aralığı
+868.6
+SAIFI
+0,20 – 55,31 aralığı
+5,27
+Şebeke parametreleri de saha aralığında: fider başına 4.007 abone · km başına 8 direk
+
+envant
+20.715 varlık
+
+oms_kesintiler
+8.513 kayıt
+
+scada_olaylar
+71.322 olay
+
+hava_durumu
+7 istasyon
+
+bakim_kayitlari
+23.125 işlem
+varlık kimliği ve fider kodu üzerinden birbirine bağlı
+Veri rastgele üretilmedi
+2,1 kat
+rüzgâr 70 km/h üstünde arıza yoğunluğu
+4,4 kat
+varlık yaşı 28'in üstünde arıza oranı
+−0,22
+budama kapsamı ile ağaç teması korelasyonu
+
+--- Slide 12 ---
+BÖLÜM 02  ·  EKSİK VERİ ANALİZİ
+Kuralı uygulamak yetmiyor
+
+
+
+IQR yöntemi
+üst sınır 433 dk
+104
+kayıt işaretledi
+→
+
+EPDK sınırı
+kentsel 600 · kırsal 900
+11
+gerçekten hatalı
+
+93
+geçerli kayıt kurtarıldı
+Kırsalda ekip varış süresi medyan 64 dk; varlıklar trafo merkezinden ortalama 15 km uzakta. 500–800 dk kesinti normaldir. 433–900 dk arasındaki 197 kaydın 185'i kırsal.
+
+69,1
+dk
+eksik kayıtlarda ekip varış süresi
+dolu olanlarda 60,3 dk
+Kaydı eksik kalanlar daha ağır arızalar. Silseydim veri setinden en zor vakaları atmış olurdum; doldurup bayrakla işaretledim.
+
+--- Slide 13 ---
+BÖLÜM 02  ·  STANDARDİZASYON
+45 yazım 13 koda indi · karne %4 düzeldi
+
+
+
+SERBEST METİN STANDARDİZASYONU
+
+Aynı arıza, dört yazım
+izolator kirik
+IZOLATOR ARIZASI
+izo. delinme
+izolatr kirik
+→
+IZOLATOR_ARIZA
+Python'da Türkçe karakter normalizasyonu, kısaltma açma ve anahtar kelime eşlemesi. Sınıflandırılamayan sıfır kayıt.
+VERİ TEMİZLEME ADIMLARININ SAIDI ÜZERİNDEKİ ETKİSİ
+
+11 kayıt
+göstergeyi 35 dk yukarı şişiriyordu
+
+397 eksik
+göstergeyi 59 dk aşağı gösteriyordu
+
+Verinin binde 3'ü, karnemizi %4 yanlış gösteriyordu.
+
+--- Slide 14 ---
+BÖLÜM 02  · VERİ ÇIKTISI 
+Şebeke, arızadan önce sinyal veriyor
+
+
+170.289
+satır · fider-gün paneli
+57
+özellik
+7 gün
+tahmin ufku
+
+Ekip modelinde de doğrulandı
+Gökalp'in ML modeli reclose_90g'yi bağımsız olarak 1. sıraya koydu
+%17,1 ağırlık
+
+%9,5  →  %46,7
+Geçici arıza birikimi arttıkça kalıcı arıza olasılığı beş kat yükseliyor. Veriye kasıtlı gömülen bu ilişkiyi model bağımsız keşfetti ve birinci sıraya koydu.
+
+--- Slide 15 ---
+BÖLÜM
+03
+Arıza Risk Tahmini:Veri ve Modelleme Yaklaşımı
+
+
+Literatür ve Metodolojik Çerçeve
+Değişken Mühendisliği ve ‘Büyüklük Yanılsaması’
+Model Performansı ve Karar Motor Seçimi
+
+
+--- Slide 16 ---
+BÖLÜM 03  ·  PROJE ÇERÇEVESİ VE LİTERATÜR
+Arıza Riskinin Makine Öğrenmesiyle Tahmini
+
+
+1
+PROBLEM
+Reaktif Arıza Müdahalesi
+Arıza sonrası müdahale yerine, geçmiş arıza ve operasyonel yorgunluk sinyallerinden riskin önceden tahmini hedeflendi.
+
+
+2
+AMAÇ
+7 Günlük Arıza Riski
+Her fider-gün için önümüzdeki 7 günde arıza riski tahmin edilerek riskli fiderler önceliklendirildi.
+
+
+3
+ÇÖZÜM
+ML Tabanlı Risk Skorlama
+Decision Tree, Random Forest, XGBoost, SVM ve Gradient Boosting karşılaştırılarak en isabetli model ana karar motoru seçildi.
+LİTERATÜR TEMELİ
+
+Algoritma Seçimi
+Ağaç tabanlı modeller (XGBoost, Random Forest) referans alındı.
+
+Ghasemkhani et al. (2024) — Machine Learning Model Development to Predict Power Outage Duration
+
+Genellenebilirlik
+Modelin belirli bir topolojiyi ezberlemesi önlendi.
+
+Sapountzoglou et al. (2020) — A Generalizable and Sensor-Independent Deep Learning Method for Fault Detection
+
+Operasyonel Sinyaller
+Geçmiş arıza ve reclose sinyalleri metodolojik olarak desteklendi.
+
+Atrigna et al. (2023) — A Machine Learning Approach to Fault Prediction Under Heatwaves
+
+--- Slide 17 ---
+BÖLÜM 03  ·  VERİ ÖN İŞLEME
+Verinin Hazırlanması ve Ezberin Bozulması
+
+SORUN
+Büyüklük Yanılsaması
+Modelin fiziksel büyüklüğü arıza riskiyle karıştırma eğilimi.
+→
+
+MÜDAHALE 1
+Hedef Daraltma
+30 Gün → 7 Gün
+30 günlük ufuk, 7 günlük kısa vadeli hedefe çekildi.
+→
+
+MÜDAHALE 2
+Oransal / Yoğunluk Değişkenleri
+Arıza / Varlık Oranı
+Arıza / Hat Uzunluğu Yoğunluğu
+Varlık / Hat Uzunluğu Yoğunluğu
+→
+
+HEDEF
+Operasyonel Erken Uyarı
+Model, büyüklük göstergeleri yerine kısa vadeli operasyonel sinyalleri öne çıkarıyor.
+
+--- Slide 18 ---
+BÖLÜM 03  ·  PERFORMANS
+Performans Karşılaştırması
+
+
+
+Doğal Taban Oranı  Şebekenin rastgele arıza ihtimali %23,6
+
+Operasyonel Metrik  İlk 350 hedefte isabet oranı
+
+Sıra
+
+Algoritma
+
+AUC
+
+Sahada İsabet
+
+Lift
+
+Konum
+
+1
+
+Random Forest
+
+0.721
+
+%59,7
+
+2,53 Kat
+
+Ana Karar Motoru
+
+2
+
+XGBoost
+
+0.715
+
+%52,6
+
+2,22 Kat
+
+Risk Skorlama Motoru
+
+3
+
+SVM (LinearSVC)
+
+0.730
+
+%52,6
+
+2,22 Kat
+
+Doğrusal Alternatif
+
+4
+
+Gradient Boosting
+
+0.722
+
+%51,1
+
+2,16 Kat
+
+Güçlü Sınıflandırıcı
+
+5
+
+Decision Tree
+
+0.722
+
+%29,4
+
+1,24 Kat
+
+Kıyaslama Referansı
+
+EN YÜKSEK AUC
+SVM  0.730
+
+EN YÜKSEK SAHADA İSABET
+Random Forest  %59,7  (2,53 Kat Lift)
+Algoritmaların Rolü
+
+Decision Tree:  Karar kurallarını ağaç yapısıyla oluşturur.
+
+Random Forest:  Birden fazla karar ağacını birleştirerek daha kararlı tahmin üretir.
+
+XGBoost:  Ardışık öğrenmeyle hataları azaltarak güçlü tahminler üretir.
+
+SVM:  Verileri ayıran en uygun karar sınırını bulmaya çalışır.
+
+Gradient Boosting:  Zayıf modelleri ardışık biçimde birleştirerek tahmin gücünü artırır.
+
+
+--- Slide 19 ---
+BÖLÜM 03  ·  KARAR MOTORU
+Random Forest — Ana Karar Motoru
+Model seçiminde AUC yerine, projenin operasyonel kullanım amacı olan ilk 350 hedefteki isabet oranı esas alınmıştır.
+
+SAHADA İSABET
+%59,7
+İlk 350 Hedef
+
+OPERASYONEL LİFT
+2,53 Kat
+Operasyonel Kazanç
+
+01
+OPERASYONEL BAŞARI
+İlk 350 hedefte modeller arasındaki en yüksek isabet oranını sağlamıştır.
+
+02
+SAHA ÖNCELİKLENDİRMESİ
+Kısıtlı bakım kapasitesinin daha yüksek risk taşıyan fiderlere yönlendirilmesini destekler.
+
+03
+MODEL SEÇİM KRİTERİ
+Yalnızca AUC değil, ilk 350 hedefteki gerçek operasyonel isabet dikkate alınmıştır.
+
+AUC Lideri:  SVM — 0.730      Operasyonel Lider:  Random Forest — %59,7
+AUC'de SVM öne çıkarken, operasyonel önceliklendirme kriterimiz olan ilk 350 hedefte Random Forest en yüksek isabet oranını sağlamıştır.
+
+--- Slide 20 ---
+BÖLÜM 03  ·  ÖZELLİK DÖNEMLERİ
+Öğrenilen Kritik Şebeke Sinyalleri (XGBoost)
+
+XGBoost — 7 Günlük Kısa Vadeli Hedef İçin, Etki Ağırlığına Göre Sıralanmıştır
+
+Sıra
+
+Parametre
+
+Etki
+
+Operasyonel Anlamı
+
+1
+
+Son 90 Gün Reclose Sayısı
+
+%17,1
+
+Son 90 gündeki kesici açma-kapama sayısı
+
+2
+
+Direk Sayısı
+
+%8,3
+
+Şebekenin fiziksel büyüklüğü
+
+3
+
+Toplam Geçmiş Arıza Sayısı
+
+%6,5
+
+Kronik arıza geçmişi
+
+4
+
+Son 30 Gün Reclose Sayısı
+
+%2,8
+
+Son 1 aydaki yakın zamanlı reclose sayısı
+
+5
+
+Hat Uzunluğu(km)
+
+%2,7
+
+Hattın topolojik uzunluğu
+
+ANA BULGU
+Modelde en yüksek ağırlığa sahip operasyonel sinyal
+Model, ekipmanın yaşını değil, son dönemdeki operasyonel yorgunluğu öğreniyor.
+
+Reclose artışı riskin nedeni değil; en güçlü öncü sinyali.
+
+Bu bir nedensellik iddiası değil , saha önceliklendirmesi
+için yeterince  güçlü bir korelasyon.
+
+Kritik Çıkarımlar
+
+
+--- Slide 21 ---
+BÖLÜM
+04
+Dağıtım Şebekelerinde Risk Skorlama Modeli
+ISO 31000 Standardına Uygun, EPDK Uyumlu Envanter Bazlı Risk Değerlendirme Sistemi
+
+--- Slide 22 ---
+BÖLÜM 04  · PROJE TANIMI
+Neden Bu Modele İhtiyaç Var, Model Neyi  Karşılıyor?
+
+NEDEN BU MODELE İHTİYAÇ VAR?
+
+Ölçek Sorunu
+Binlerce envanter , manuel önceliklendirme imkânsız
+
+Önceliklendirme Sorunu 
+Hangi envantere önce müdahale edilmeli
+
+Kısıtlı Kaynak
+Sınırlı ekip, doğru envanter doğru zamanda
+BU MODEL NEYİ KARŞILIYOR?
+
+
+✓
+EPDK Uyumu
+SAIFI · SAIDI · AENS hizalı etki ölçümü
+
+
+✓
+ISO 31000
+Olasılık × Etki metodolojisi
+
+
+✓
+Tek Skor
+Farklı birimler → 0–100 Risk Skoru
+
+
+✓
+Öncelikli Bakım
+Kaynaklar en kritik envantere
+
+--- Slide 23 ---
+BÖLÜM 04  · HESAPLAMA MANTIĞI
+Normalizasyon ve Ağırlıklandırma
+
+
+
+
+Farklı birim ve ölçeklerdeki veriler (yaş, mesafe, abone, enerji kaybı) karşılaştırılabilir değildir. Her veri, kendi min–max aralığına göre ortak bir 0–100 ölçeğine çekilir.
+
+NORMALİZASYON FORMÜLÜ
+( X − Xmin )
+
+( Xmax − Xmin )
+× 100
+
+RİSK SKORU FORMÜLÜ
+Olasılık P. × Etki P.
+
+100
+
+Model 20.715 varlığı bu iki adımdan geçirerek 0–100 arası tek bir Risk Skoruna indirger.
+OLASILIK PUANI  ·  %100
+Arıza Geçmişi
+
+%45
+Yüklenme Oranı
+
+%25
+Çevresel Riskler
+
+%20
+Yaş
+
+%10
+ETKİ PUANI  ·  %100
+Abone Sayısı
+
+%35
+Kesinti Süresi
+
+%35
+Enerji Kaybı
+
+%30
+
+--- Slide 24 ---
+BÖLÜM 04  · VARLIK DETAYI
+Dört Risk Kategorisinden En Kritik Envanter
+
+
+
+
+KRİTİK
+
+YÜKSEK
+
+ORTA
+
+DÜŞÜK
+
+Varlık ID
+
+F015-D0016
+
+F003-T009
+
+F006-T006
+
+F033-D0179
+
+Tür
+
+Direk
+
+Trafo
+
+Trafo
+
+Direk
+
+İlçe
+
+Toroslar
+
+Akdeniz
+
+Akdeniz
+
+Yenişehir
+
+Yaş
+
+36
+
+27
+
+32
+
+36
+
+Arıza (2 Yıl)
+
+12
+
+2
+
+0
+
+2
+
+Arıza (1 Yıl)
+
+6
+
+1
+
+0
+
+1
+
+Ağaç Yoğunluğu
+
+0,22
+
+0,25
+
+0,26
+
+0,37
+
+Kıyı Mesafesi (km)
+
+1,0
+
+1,0
+
+1,0
+
+1,0
+
+Yüklenme (Abone/Varlık)
+
+108,5
+
+100,6
+
+99,1
+
+8,4
+
+Abone Sayısı
+
+7.705
+
+8.352
+
+7.436
+
+1.929
+
+Kritik Müşteri
+
+0
+
+3
+
+0
+
+1
+
+Toplam Kesinti (dk)
+
+1.085,5
+
+172,5
+
+0,0
+
+558,4
+
+Toplam Kayıp (kWh)
+
+82.797,4
+
+11.504,3
+
+0,0
+
+12.208,2
+
+Olasılık Puanı
+
+82,21
+
+41,81
+
+35,23
+
+29,98
+
+Etki Puanı
+
+71,74
+
+38,24
+
+28,38
+
+16,66
+
+Risk Skoru
+
+58,98
+
+15,99
+
+10,00
+
+4,99
+
+--- Slide 25 ---
+BÖLÜM 04  ·  SONUÇ
+Genel Veri Analizi ve Sonraki Adımlar
+
+
+RİSK KATEGORİ DAĞILIMI  ·  20.715 Envanter
+
+Kritik
+202
+%1,0
+
+Yüksek
+1.272
+%6,1
+
+Orta
+1.927
+%9,3
+
+Düşük
+17.314
+%83,6
+Ortalama Risk Skoru: 2,88   ·   Maksimum: 58,98
+
+--- Slide 26 ---
+BÖLÜM
+05
+Bakım Optimizasyonu Ve Kaynak Planlama
+
+Bakım faaliyetlerinde verimlilik
+Kaynak optimizasyonu
+Sürdürülebilir operasyon için planlama yaklaşımlarının değerlendirilmesi.
+
+--- Slide 27 ---
+BÖLÜM 05 ·Operasyonel Verimlilik ve Kaynak Optimizasyonu
+Bakım Programının Operasyon Araştırmasıyla Optimizasyonu
+
+
+1
+PROBLEM
+Kısıtlı Ekip Kapasitesi
+
+
+2
+AMAÇ
+Beklenen Faydayı 
+Maksimize Etmek
+
+
+3
+ÇÖZÜM
+Lineer Programlama Tabanlı Önceliklendirme
+YÖNTEM
+
+Operasyon Araştırması
+
+Lineer Programlama
+
+Ekip Planlama
+
+Bütçe Optimizasyonu
+
+Risk Bazlı Yatırım Kararları
+Toroslar EDAŞ bölgesindeki 20.715 varlık için, kısıtlı bakım ekibi kapasitesi altında risk ve bütçeyi dengeleyen çok yıllı bir yatırım programı kuruldu.
+
+--- Slide 28 ---
+BÖLÜM 05 · Bakım Optimizasyon Modeli ve Çıktıları
+BAKIM OPTİMİZASYONU SONUÇLARI
+Yapay zekâ destekli bakım önceliklendirme modeli
+
+
+
+
+▥
+◎
+BEKLENEN FAYDA FORMÜLÜ
+AMAÇ FONKSİYONU
+
+BEKLENEN FAYDA
+=
+
+OLASILIK PUANI
+────────
+100
+×
+
+ONARIM MALİYETİ
+×
+
+ETKİNLİK ORANI
+
+MAX {  Σ (Envanterlerin Beklenen Faydası)  +  Σ (Fiderlerin Kilometrik Bakım Faydası) }
+MODEL KISITLARI
+
+
+₺
+BÜTÇE KISITI
+
+Σ (Envanter Maliyeti × xᵢ) + Σ (Fider KM Maliyeti × yⱼ) ≤ TOPLAM BÜTÇE
+
+◷
+EKİP KAPASİTESİ KISITI
+
+Σ (Envanter Süresi × xᵢ) + Σ (Fider KM Süresi × yⱼ) ≤ TOPLAM KAPASİTE
+
+
+✓
+MODEL ÇIKTISI
+Bütçe ve ekip kapasitesi dikkate alınarak 6.278 envanterden oluşan önceliklendirilmiş bakım programı oluşturulmuştur.
+OPTİMİZASYON SONUÇ ÖZETİ
+
+--- Slide 29 ---
+BÖLÜM 05  ·  Risk Önceliklerine Göre Bakım Dağılımı ve Bölgesel Yoğunluk Analizi
+Seçilen Envanterlerin Risk ve Bakım Türü Dağılımı
+RİSK KATEGORİLERİ
+Programa alınan 6.278 envanterin büyük çoğunluğu (%76,4) düşük risk kategorisinde — periyodik kontrol niteliğinde, düşük maliyetli işlemler.
+BAKIM TÜRÜ VE SEVİYESİ
+Periyodik kontrol (Seviye 1) en sık önerilen işlem; izolatör değişimi (Seviye 3) daha az sayıda ama daha kapsamlı müdahale gerektiriyor.
+
+Silifke
+1.010
+En yüksek bakım yoğunluğu
+
+Tarsus
+845
+İkinci en yoğun bölge
+
+Erdemli
+638
+Kıyı şeridi etkisi belirgin
+En Fazla Bakım Önerilen İlçeler
+
+--- Slide 30 ---
+BÖLÜM 05  ·  Bakım önceliklerinin 4 yıllık dönemde fayda, maliyet ve kaynak kullanımı açısından dağılımı
+4 Yıllık Bakım Programı Özeti
+
+Yıl
+
+Kayıt
+
+Fayda (TL)
+
+Maliyet (TL)
+
+Ekip Saati
+
+Fayda/Maliyet
+
+2027
+
+1.570
+
+21.407.703,306
+
+18.329.402,941
+
+6.046,1
+
+1,17x
+
+2028
+
+1.570
+
+16.477.959,920
+
+    
+   4.241.947,951
+
+
+5.062,2
+
+3,88x
+
+2029
+
+1.569
+
+2.432.693
+
+18.971.205,44
+
+3.557,8
+
+0,13x
+
+2030
+
+1.569
+
+596.174
+
+2.887.118
+
+3.001,7
+
+0,21x
+Fayda/maliyet oranı yıllar içinde düşüyor — program, en yüksek getirili varlıkları önce ele alacak şekilde kuruldu.
+
+--- Slide 31 ---
+BÖLÜM 05  · 2027–2030 dönemi için önceliklendirilmiş bakım programının finansal ve operasyonel çıktıları
+4 Yıllık Programın Genel Sonucu
+
+6.278
+Programa Alınan Envanter
+
+40,9 M TL
+Toplam Beklenen Fayda
+
+44,4M TL
+Toplam Bakım Maliyeti
+
+18.181
+Toplam Ekip Saati
+
+0,92x
+Toplam fayda /toplam maliyet
+
+FAYDA / MALİYET ORANI
+1,11x
+Harcanan her 1 TL karşılığında 1,11 TL beklenen fayda(envanter bazlı)
+
+--- Slide 32 ---
+BÖLÜM
+06
+Dağıtım Bölgesi için Pilot Uygulama ve SAIDI–SAIFI Analizi
+Mersin arıza profili 
+Fider bazlı risk değerlendirmesi
+Coğrafi risk haritalama
+Arıza azaltım senaryoları ve bakım programının SAIDI–SAIFI göstergelerine etkisi
+
+--- Slide 33 ---
+BÖLÜM 06  ·  PİLOT UYGULAMA
+Mersin Bölgesi Arıza Profili
+OMS kesinti kayıtları (2021–2025) — temiz veri setindeki 8.387 plansız kesinti olayının kök neden dağılımı
+
+
+TOPLAM KAYITLI OLAY (2021–2025)
+8.387
+
+ORTALAMA KESİNTİ SÜRESİ
+187 dk
+
+Müşteri-Dakika Formülü
+Müşteri-Dk =
+Süre(dk) × Etkilenen Abone
+İlk 3 neden (ağaç, hava, yaşlanma) olayların %56'sını oluşturuyor
+%56
+Ağaç teması, hava koşulları ve ekipman yaşlanması olayların çoğunluğunu oluşturuyor.Üçü de bakım/budama programlarıyla azaltılabilir.
+
+--- Slide 34 ---
+BÖLÜM 06  ·  FİDER BAZLI DEĞERLENDİRME
+En Riskli Fiderler ve Risk Matrisi
+XGBoost özellik önemine dayalı bütünleşik risk skoruna göre — 20.715 varlık üzerinden ortalama
+
+
+429
+Toroslar ilçesi, 429 kritik+yüksek riskli varlıkla en yoğun bölge, risk matrisinde sağ-üst çeyrekte kümelenen fiderler bakım önceliğini oluşturuyor.
+
+--- Slide 35 ---
+BÖLÜM 06  ·  RİSK HARİTALAMA
+Envanter Bazlı Coğrafi Risk Haritası
+20.715 envanter, ISO 31000 uyumlu Risk = Olasılık × Etki modeliyle skorlanarak haritalandı
+
+
+Kritik: 202 · Yüksek: 1.272
+
+risk_skorlama_v4.py
+Risk = Olasılık
+  × Etki / 100
+
+Olasılık =
+ .45 Arıza
+ .25 Yüklenme
+ .20 Çevresel
+ .10 Yaş
+
+Etki =
+ .35 Abone
+ .35 Kesinti(dk)
+ .30 Kayıp(kWh)
+Eşik: Risk≥16 Kritik
+%1,0
+Envanterlerin yalnızca %1'i 'Kritik' kategoride, ama Toroslar ve Akdeniz'de coğrafi olarak kümeleniyor, pilot bölge seçimini doğrudan yönlendiriyor.
+
+--- Slide 36 ---
+BÖLÜM 06  ·  ARIZA AZALTIM SENARYOLARI
+Reclose Davranışı ve Bakım Optimizasyonu
+Geçici arızaların kalıcıya dönüşme eğilimi ve hedefli bakım programının bölgesel etkisi
+
+3. reclose denemesinden sonra kalıcı arıza olasılığı %45,8'e çıkıyor — reclose sırası erken uyarı sinyali.
+
+
+Kırsalda ve kentselde SAIDI - SAIFI programla düşürülüyor.
+
+
+Bakım Etkinlik Formülü
+Hedef Süre = Mevcut Süre
+× (1 − Etkinlik Oranı)
+Programa alınan 6.278 ve Envanter (%30,3 kapsam) için geçerli · envanter başına ortalama oran
+%45,8
+Tekrarlayan reclose olayları ile hedefli bakım programını birleştirmek, kalıcı arızaları erken görünür kılıp önlenebilir hale getiriyor.
+
+--- Slide 37 ---
+BÖLÜM 06  ·  SAIDI–SAIFI ETKİSİ
+Pilot Uygulamanın SAIDI–SAIFI Etkisi
+CEER metodolojisiyle uyumlu 3 senaryolu hesaplama ve 2027–2030 bakım yol haritasının beklenen katkısı
+
+3 Senaryolu Hesaplama
+8 olağanüstü gün (hava/özel olay) hariç tutulunca SAIDI %1,6-SAIFI %0,9 düşüyor.
+
+2027–2030 Yol Haritası
+Fayda 2027’de maliyeti aşıyor; 2029-2030’da azalan getiri bekleniyor.
+
+ENVANTER BAZLI FAYDA (2027–2030)
+18,6M TL
+
+ENVANTER BAZLI MALİYET
+16,8M TL
+
+SAIDI / SAIFI Formülü
+SAIDI =
+Σ(Süre × Abone)
+
+Abone Tabanı × Yıl
+SAIFI =
+Σ(Abone)
+
+Abone Tabanı × Yıl
+Kapsam: 6.278 envanter (%30,3) · Ort. risk 4,33 · Kilometrik bakım hariç
+Kilometrik bakım dahil toplamda: ~44,4M TL maliyet / ~40,9M TL fayda
+ENVANTER BAŞINA ORTALAMA ORAN
+1,11×
+Programın toplam ölçekte envanter bazlı fayda/maliyet oranı 1,11× (18,6M / 16,8M TL)  düşük maliyetli, yüksek getirili küçük müdahaleler sayıca ağır basıyor. Pilot bölgede genişletilmeden önce Toroslar ve Akdeniz’deki kritik fiderlerde doğrulanması gerekir.
+
+--- Slide 38 ---
+BÖLÜM
+07
+Görüntü İşleme İle Arıza Tespiti 
+YOLOv8 Mimarisi ile Kusur Tespiti ve Otonom Analiz
+
+--- Slide 39 ---
+
+
+
+BÖLÜM 07  ·  GİRİŞ VE PROBLEM
+Geleneksel Denetimden Otonom Yapay Zekaya
+
+Yüksek Maliyet ve İş Yükü: Geniş şebekede zaman alan ağır fiziksel denetimler.
+
+İnsan Faktörü: Kişiye göre değişen, standart dışı risk algısı.
+
+Görünmez Riskler: İnsan gözünden kaçabilen ve öngörülemeyen kritik hatalar.
+
+
+
+--- Slide 40 ---
+
+BÖLÜM 07  ·  TEKNOLOJİ VE VERİ ALTYAPISI
+Neden YOLOv8 ?
+
+Gerçek Zamanlı Analiz: Çıkarım (inference) süresini minimize ederek, binlerce saha fotoğrafının gerçek zamanlıya yakın bir hızda işlenmesi.
+
+Çevrimdışı Çalışma Yeteneği: Geliştirilen modelin, sunucuya ihtiyaçduymadan doğrudan saha teknisyenlerinin tabletlerinde veya dronedonanımlarında çalışabilme kapasitesi.
+
+Çoklu Ölçek: Hem devasa bir direği hem de üzerindeki küçücük bir cıvatayı veya çatlağı aynı karede kayıpsız algılayabilme gücü.
+
+
+
+--- Slide 41 ---
+
+BÖLÜM 07  ·   MODEL EĞİTİMİ VE BAŞARI
+Model Eğitim Sonuçları ve Performans Metrikleri
+
+Model Performansı:
+
+%84 Kesinlik (Precision): Düşük yanlış alarm oranı ve doğru arıza tespiti.
+%67 Hassasiyet (mAP50): Karmaşık saha şartlarında genel nesne tanıma başarısı.
+İstikrarlı Eğitim: Grafikler bazında aşırı öğrenme (overfitting) görülmeyen dengeli yapı.
+
+Gelişim Alanları:
+
+%60 Duyarlılık (Recall): İnce kablo kopukluklarında tespit oranının artırılması gerekliliği.
+Veri Dağılımı: Nadir görülen arıza türleri için veri setinin zenginleştirilmesi.
+
+
+
+--- Slide 42 ---
+BÖLÜM 07  ·  SİSTEM ENTEGRASYONU VE OTOMASYON
+Sistem Entegrasyonu ve Veri Akışı
+
+Risk Normalizasyonu: Min-Max algoritması ile ham model skorlarının 0.00 - 1.00 arası operasyonel öncelik puanlarına dönüştürülmesi.
+
+CBS Varlık Eşleştirmesi: Koordinat verileri (Mersin geneli) kullanılarak arızaların Trafo -> Fider -> Direk (ID) zincirine otomatik atanması.
+
+Kurumsal Veri Çıktısı: Tespitlerin ve risk puanlarının, ana sistemlere doğrudan entegre edilebilir ilişkisel formatlara çevrilmesi.
+
+
+
+--- Slide 43 ---
+BÖLÜM 07  · ÇIKTI ÖRNEKLERİ
+Model Çıktıları ve Saha Uygulama Örnekleri
+
+
+
+
+--- Slide 44 ---
+BÖLÜM
+08
+
+
+
+4 Katmanlı Modüler Sistem Mimarisi ve Orkestrasyon
+Canlı Risk Haritası, Canlı Veri Akışı ve Streamlit UX/UI Tasarımı
+
+Canlı Şebeke İzleme Dashboard'u ve Sistem Mimarisi
+
+--- Slide 45 ---
+BÖLÜM 08  ·  MİMARİ VE ORKESTRASYON 
+Veriden Karara: Sistem Mimarisi & Orkestrasyon
+OMS & Şebeke Verisi
+Risk & ML Tahmin Modelleri
+TEDAŞ Birim Fiyatı & Aksiyon
+Streamlit & PyDeck Canlı Arayüz
+KATMAN 1
+Veri Katmanı
+KATMAN 2
+Analitik Katman
+KATMAN 3
+Karar Destek Katmanı
+KATMAN 4
+Dashboard UI
+
+4 katmanlı esnek ve modüler sistem yapısının sıfırdan kurgulanması
+OMS kesinti verilerinden canlı arayüze otomatik veri akışı
+Bağımsız katman mimarisi sayesinde modeller güncellense de çalışmaya devam eden altyapı
+Ekip çıktılarının ve maaliyet kararlarının canlı Streamlit dashboard'una entegrasyonu
+
+--- Slide 46 ---
+BÖLÜM 08  · DASHBOARD UI & HARİTA
+Canlı Şebeke İzleme Dashbourd'u ve Genel Yapısı
+
+--- Slide 47 ---
+
+
+BÖLÜM 08  · DASHBOARD UI & HARİTA
+
+Canlı Şebeke İzleme Dashboard'u ve Genel Yapısı
+Bölgesel toplam varlık ve kritik risk metriklerinin KPI takibi
+Tekil varlık risk seviyelerine göre renklendirilmiş Scatterplot katmanı
+
+--- Slide 48 ---
+
+BÖLÜM 08  · DASHBOARD UI & HARİTA
+Canlı Şebeke İzleme Dashbourd'u ve Genel Yapısı
+5 dakika da bir otomatik yenilenen canlı arıza uyarı simülasyonu
+Sahadaki teknisyenler için fotoğraf yükleme ve teyit paneli

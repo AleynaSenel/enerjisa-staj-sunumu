@@ -454,7 +454,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
-            padding: 32px;
+            padding: 0;
             z-index: 2;
             margin-top: 0;
             /* soft inner glow */
@@ -470,19 +470,11 @@
                 0 16px 48px rgba(0, 44, 95, 0.12);
         }
 
-        /* Icon inside placeholder */
-        .fluid-media::before {
-            content: '⬚';
-            font-size: 3rem;
-            opacity: 0.25;
-            margin-bottom: 12px;
-        }
-
 
         .team-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
+            gap: 16px;
             overflow-x: visible;
             padding: 0;
             width: 100%;
@@ -573,18 +565,18 @@
             .fluid-section, 
             .fluid-section:nth-child(even) {
                 flex-direction: column !important;
-                gap: 32px;
+                gap: 16px;
                 padding: 0 16px;
-                margin-bottom: 80px;
+                margin-bottom: 60px;
             }
 
             .fluid-content {
-                padding: 16px 0 0 0;
+                padding: 0;
             }
 
             .fluid-media {
-                min-height: 240px;
-                padding: 24px;
+                min-height: auto;
+                padding: 0;
             }
 
             /* Başlıkları ve arkadaki dev sayıyı ortala ve küçült */
@@ -811,6 +803,78 @@
                 box-shadow: 0 8px 25px rgba(253, 185, 19, 0.5);
             }
         }
+    
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        .feature-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,44,95,0.05);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .feature-icon-container {
+            width: 48px;
+            height: 48px;
+            background: #FFCA28;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .feature-title {
+            color: #002c5f;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+        .feature-desc {
+            color: #64748b;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .features-grid {
+                gap: 12px;
+            }
+            .feature-card {
+                padding: 16px;
+                border-radius: 16px;
+            }
+            .feature-icon-container {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            .feature-title {
+                font-size: 0.95rem;
+                margin-bottom: 8px;
+            }
+            .feature-desc {
+                font-size: 0.8rem;
+                line-height: 1.4;
+            }
+        }
+
     </style>
 </head>
 
@@ -823,7 +887,6 @@
                 <img src="teams-arka-plan.png" alt="Hero arka planı" class="hero-bg">
                 <div class="hero-content" data-aos="zoom-in" data-aos-duration="1000">
                     <h1 class="hero-title">Yapay Zeka Destekli Arıza Tahmini ve Önleyici Bakım Modelinin Dağıtım Şebekelerine Uygulanması</h1>
-                    <p class="hero-subtitle">Enerjisa Toroslar EDAŞ Staj Projesi Sunumu</p>
                     <a href="#canli-demo" class="demo-button">Canlı Demoyu İncele</a>
                 </div>
                 <div class="scroll-indicator">
@@ -840,91 +903,91 @@
                 <div class="team-container" data-aos="fade-up" data-aos-delay="200">
                     <!-- Üye 1 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/aydanur.jpeg" alt="Aydanur Akın" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Aydanur Akın</h3>
                         <p class="member-role">Proje Lideri</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/aydanur-akin" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
                     </div>
                     <!-- Üye 2 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/gokalp.jpeg" alt="Gökalp Eke" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Gökalp Eke</h3>
                         <p class="member-role">Teknik Lider (AI)</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/gökalp-eke-900b663a1?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
                     </div>
                     <!-- Üye 3 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/yasemin.jpeg" alt="Yasemin Uslu" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Yasemin Uslu</h3>
                         <p class="member-role">Optimizasyon Lideri</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="https://tr.linkedin.com/in/yasemin-uslu-76734a29a" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
                     </div>
                     <!-- Üye 4 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/ozgur.jpeg" alt="Özgür Sakallı" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Özgür Sakallı</h3>
                         <p class="member-role">Veri Analizi Lideri</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/özgür-sakallı-20667b374?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
                     </div>
                     <!-- Üye 5 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/aleyna.jpeg" alt="Aleyna Şenel" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Aleyna Şenel</h3>
                         <p class="member-role">Görüntü İşleme Lideri</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="GitHub">
+                            <a href="https://github.com/AleynaSenel" target="_blank" title="GitHub">
                                 <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                             </a>
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/aleyna-şenel" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
                     </div>
                     <!-- Üye 6 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/zeliha.png" alt="Zeliha Çelik" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Zeliha Çelik</h3>
                         <p class="member-role">Sistem Tasarım Lideri</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/zelihacelik/" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
                     </div>
                     <!-- Üye 7 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/selin.jpeg" alt="Selin Efesoy" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Selin Efesoy</h3>
                         <p class="member-role">Pilot Uygulama Lideri</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="http://linkedin.com/in/selin-efesoy-248bb7313" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
                     </div>
                     <!-- Üye 8 -->
                     <div class="team-member">
-                        <div class="member-photo">Fotoğraf Alanı</div>
+                        <img src="team_photos/arzu.jpeg" alt="Arzu Güven" class="member-photo" style="object-fit: cover;">
                         <h3 class="member-name">Arzu Güven</h3>
                         <p class="member-role">Literatür ve Bakım Süreçleri Lideri</p>
                         <div class="social-links">
-                            <a href="#" target="_blank" title="LinkedIn">
+                            <a href="https://www.linkedin.com/in/arzu-güven-88132a357?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" title="LinkedIn">
                                 <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                             </a>
                         </div>
@@ -941,7 +1004,7 @@
                     <li><a href="#bolum-03">03 Makine Öğrenmesi İle Arıza Tahmin Modelleri</a></li>
                     <li><a href="#bolum-04">04 Dağıtım Şebekelerinde Risk Skorlama Modeli</a></li>
                     <li><a href="#bolum-05">05 Bakım Optimizasyonu Ve Kaynak Planlama</a></li>
-                    <li><a href="#bolum-06">06 Dağıtım Bölgesi için Pilot Uygulama Ve SAIDI – SAIFI Analizi</a></li>
+                    <li><a href="#bolum-06">06 Dağıtım Bölgesi için Pilot Uygulama ve SAIDI–SAIFI Analizi</a></li>
                     <li><a href="#bolum-07">07 Görüntü İşleme İle Arıza Tespiti</a></li>
                     <li><a href="#bolum-08">08 Yapay Zeka Destekli Önleyici Bakım Mimarisi</a></li>
                 </ul>
@@ -952,16 +1015,10 @@
                 <div class="fluid-content">
                     <h2 class="fluid-title">Proje Tanımı ve Hedefler</h2>
                     <ul class="fluid-list">
-                        <li>Elektrik dağıtım şebekelerindeki arızaların önceden tespit edilmesi ve bakım süreçlerinin
-                            optimize edilmesi hedeflenmektedir.</li>
-                        <li>Müşteri memnuniyetini artırmak ve kesinti sürelerini (SAIDI/SAIFI) en aza indirmek ana odak
-                            noktasıdır.</li>
-                        <li>Bakım maliyetlerinde %20 oranında tasarruf sağlanması öngörülmektedir.</li>
-                        <li>Enerjisa'nın sürdürülebilirlik hedeflerine teknolojik altyapı ile katkı sağlanacaktır.</li>
+                        <li><strong>Geleneksel Bakımdan Yapay Zeka Destekli Önleyici Bakıma Geçiş:</strong> Projenin en temel amacı, elektrik dağıtım şebekelerinde arızaların yaşandıktan sonra onarıldığı "düzeltici bakım" veya sadece takvime bağlı yapılan "periyodik bakım" anlayışını tamamen değiştirmektir. Bunun yerine; makine öğrenmesi ve yapay zeka algoritmaları kullanılarak, şebekedeki olası arızaların (direk devrilmesi, iletken kopması, izolatör hasarı vb.) daha gerçekleşmeden önce tespit ve tahmin edildiği akıllı, "kestirimci" bir bakım modeli inşa edilmesi hedeflenmektedir.</li>
+                        <li><strong>Çok Kaynaklı Veri İşleme ve Dinamik Risk Skorlaması:</strong> Bu tahminleme sistemini çalıştırabilmek için SCADA (merkezi kontrol), OMS (kesinti yönetim sistemi), CBS (harita/konum) verileri ve drone/saha görüntüleri (TEDSUITE) tek bir analitik merkezde birleştirilir. Bilgisayarlı görü (YOLO, CNN) ve gelişmiş tahmin modelleri (XGBoost, Random Forest) kullanılarak şebekedeki her bir ekipman; yaşı, çevresel riskleri, yüklenme oranı ve geçmiş arıza kayıtları üzerinden analiz edilip matematiksel bir "risk puanı" ile etiketlenir.</li>
+                        <li><strong>Kaynak Optimizasyonu ve Kesintilerin Azaltılması (Pilot Uygulama):</strong> Üretilen bu risk haritaları sayesinde, sahaya çıkacak bakım ekiplerinin, bütçenin ve operasyonel kaynakların tamamen "risk bazlı" olarak en doğru ve acil noktalara yönlendirilmesi sağlanır. Geliştirilen tüm bu uçtan uca mimarinin Mersin Dağıtım Bölgesi'nde pilot olarak uygulanmasıyla birlikte, müşteri memnuniyetini belirleyen ana kriterlerden olan elektrik kesinti sürelerinin ve sıklıklarının (SAIDI-SAIFI metrikleri) ciddi oranda düşürülmesi amaçlanmaktadır.</li>
                     </ul>
-                </div>
-                <div class="fluid-media">
-                    [Görsel / Grafik / Tablo Alanı - Yer Tutucu]
                 </div>
             </section>
 
@@ -969,14 +1026,29 @@
             <section id="bolum-01" class="fluid-section" data-aos="fade-up" data-aos-offset="200">
                 <div class="huge-number">01</div>
                 <div class="fluid-content">
-                    <h2 class="fluid-title">Dağıtım Şebekelerinde Arıza Yöntemi ve Kestirimci Bakım Yaklaşımları</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] Bu bölümde geleneksel arıza yönetim yöntemleri ile modern kestirimci bakım arasındaki farklar ele alınacaktır.</li>
-                        <li>[Taslak İçerik] Dağıtım şebekelerinde karşılaşılan kronik arıza tipleri ve kök neden analizleri.</li>
+                    <h2 class="fluid-title">Dağıtım Şebekelerinde Arıza Yönetimi ve Kestirimci Bakım Yaklaşımı</h2>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>Şebekedeki arıza kaynakları elektriksel/mekanik, çevresel/iklimsel ve ekipman/izolasyon olmak üzere üç ana grupta sınıflandırıldı.</li>
+                        <li>Ağaç teması %21,3 ile en büyük paya sahip; kırsal bölgelerdeki etki kentsele kıyasla çok daha yüksek (%90,1).</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [Görsel Alanı - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide4.jpg" alt="Slide 4" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide5.jpg" alt="Slide 5" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide6.jpg" alt="Slide 6" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide7.jpg" alt="Slide 7" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide8.jpg" alt="Slide 8" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide9.jpg" alt="Slide 9" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -985,13 +1057,27 @@
                 <div class="huge-number">02</div>
                 <div class="fluid-content">
                     <h2 class="fluid-title">SCADA, OMS Ve Şebeke Verilerinin Yapay Zeka İçin Hazırlanması</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] SCADA ve OMS (Outage Management System) üzerinden alınan ham verilerin temizlenmesi.</li>
-                        <li>[Taslak İçerik] Yapay zeka modellerinin eğitilebilmesi için verilerin etiketlenmesi ve öznitelik çıkarımı (Feature Engineering).</li>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>20.715 varlık, 8.513 kesinti kaydı ve 71.322 SCADA olayı tek bir veri setinde birleştirilip CEER (39 Avrupa ülkesi) referanslarıyla doğrulandı.</li>
+                        <li>Eksik kayıtlar rastgele değil; IQR yöntemiyle tespit edilen 104 aykırı kayıttan 93'ü kurtarılarak veri kalitesi artırıldı.</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [Veri Akış Şeması - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide10.jpg" alt="Slide 10" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide11.jpg" alt="Slide 11" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide12.jpg" alt="Slide 12" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide13.jpg" alt="Slide 13" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide14.jpg" alt="Slide 14" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -999,14 +1085,29 @@
             <section id="bolum-03" class="fluid-section" data-aos="fade-up" data-aos-offset="200">
                 <div class="huge-number">03</div>
                 <div class="fluid-content">
-                    <h2 class="fluid-title">Makine Öğrenmesi İle Arıza Tahmin Modelleri</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] Zaman serisi analizi ve sınıflandırma algoritmaları (Random Forest, XGBoost vb.) ile tahminleme yapılması.</li>
-                        <li>[Taslak İçerik] Algoritmaların birbirleriyle karşılaştırılması ve model performans ölçümleri (Accuracy, Precision, Recall).</li>
+                    <h2 class="fluid-title">Arıza Risk Tahmini: Veri ve Modelleme Yaklaşımı</h2>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>Reaktif müdahale yerine, geçmiş arıza ve operasyonel sinyallerden yola çıkarak her fider için önümüzdeki 7 günün arıza riski tahmin ediliyor.</li>
+                        <li>Decision Tree, Random Forest, XGBoost, SVM ve Gradient Boosting karşılaştırılarak en isabetli model ana karar motoru olarak seçildi.</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [Model Performans Grafiği - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide15.jpg" alt="Slide 15" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide16.jpg" alt="Slide 16" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide17.jpg" alt="Slide 17" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide18.jpg" alt="Slide 18" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide19.jpg" alt="Slide 19" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide20.jpg" alt="Slide 20" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -1015,13 +1116,27 @@
                 <div class="huge-number">04</div>
                 <div class="fluid-content">
                     <h2 class="fluid-title">Dağıtım Şebekelerinde Risk Skorlama Modeli</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] Şebeke varlıkları için arıza olasılıklarına ve etki büyüklüklerine göre risk haritası çıkarılması.</li>
-                        <li>[Taslak İçerik] Kritik bölgelerin tespit edilerek renk kodlarıyla görselleştirilmesi.</li>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>Binlerce varlığın manuel önceliklendirilmesi imkânsız olduğundan, ISO 31000 uyumlu Olasılık × Etki modeliyle her varlık 0–100 arası tek bir risk skoruna indirgeniyor.</li>
+                        <li>Model EPDK'nın SAIFI/SAIDI/AENS hedefleriyle uyumlu çalışıyor ve kısıtlı ekip kaynağını en kritik varlıklara yönlendiriyor.</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [Risk Haritası Görseli - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide21.jpg" alt="Slide 21" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide22.jpg" alt="Slide 22" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide23.jpg" alt="Slide 23" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide24.jpg" alt="Slide 24" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide25.jpg" alt="Slide 25" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -1029,14 +1144,29 @@
             <section id="bolum-05" class="fluid-section" data-aos="fade-up" data-aos-offset="200">
                 <div class="huge-number">05</div>
                 <div class="fluid-content">
-                    <h2 class="fluid-title">Bakım Optimizasyonu Ve Kaynak Planlama</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] Risk skorlarına dayanarak saha ekiplerinin yönlendirilmesi ve iş emirlerinin otomatik oluşturulması.</li>
-                        <li>[Taslak İçerik] Bakım maliyetlerinin düşürülmesi ve personel verimliliğinin artırılması.</li>
+                    <h2 class="fluid-title">Bakım Optimizasyonu ve Kaynak Planlama</h2>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>Kısıtlı bakım ekibi kapasitesiyle beklenen faydayı maksimize etmek için Operasyon Araştırması ve Lineer Programlama tabanlı bir önceliklendirme kuruldu.</li>
+                        <li>Toroslar EDAŞ bölgesindeki 20.715 varlık için risk ve bütçeyi dengeleyen çok yıllı bir yatırım programı oluşturuldu.</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [Optimizasyon Tablosu - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide26.jpg" alt="Slide 26" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide27.jpg" alt="Slide 27" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide28.jpg" alt="Slide 28" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide29.jpg" alt="Slide 29" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide30.jpg" alt="Slide 30" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide31.jpg" alt="Slide 31" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -1044,14 +1174,29 @@
             <section id="bolum-06" class="fluid-section" data-aos="fade-up" data-aos-offset="200">
                 <div class="huge-number">06</div>
                 <div class="fluid-content">
-                    <h2 class="fluid-title">Dağıtım Bölgesi için Pilot Uygulama Ve SAIDI – SAIFI Analizi</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] Seçilen bir pilot bölgede modelin canlı olarak test edilmesi.</li>
-                        <li>[Taslak İçerik] Proje öncesi ve sonrası SAIDI (Kesinti Süresi) ve SAIFI (Kesinti Sıklığı) endekslerindeki iyileşmenin analizi.</li>
+                    <h2 class="fluid-title">Dağıtım Bölgesi için Pilot Uygulama ve SAIDI–SAIFI Analizi</h2>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>Mersin bölgesinde 2021–2025 arası 8.387 plansız kesinti kaydı incelendi; ağaç teması, hava koşulları ve ekipman yaşlanması olayların %56'sını oluşturuyor.</li>
+                        <li>Önerilen bakım programıyla kırsal SAIDI 2.607'den 987'ye, SAIFI 12,7'den 4,8'e düşürülerek hedefli bakımın etkisi sahada test edildi.</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [SAIDI/SAIFI Analiz Grafiği - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide32.jpg" alt="Slide 32" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide33.jpg" alt="Slide 33" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide34.jpg" alt="Slide 34" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide35.jpg" alt="Slide 35" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide36.jpg" alt="Slide 36" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide37.jpg" alt="Slide 37" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -1059,14 +1204,29 @@
             <section id="bolum-07" class="fluid-section" data-aos="fade-up" data-aos-offset="200">
                 <div class="huge-number">07</div>
                 <div class="fluid-content">
-                    <h2 class="fluid-title">Görüntü İşleme İle Arıza Tespiti</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] Drone ve saha kameralarından alınan görüntülerin derin öğrenme (Deep Learning) modelleri ile analiz edilmesi.</li>
-                        <li>[Taslak İçerik] İzolasyon bozuklukları, fiziki hasarlar ve korozyon gibi hataların görsel olarak tespit edilmesi.</li>
+                    <h2 class="fluid-title">YOLOv8 Mimarisi ile Görüntü İşleme ve Arıza Tespiti</h2>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>Geleneksel fiziksel denetimlerin yüksek maliyeti ve insan faktörüne bağlı öngörülemeyen risklerine karşı, saha görüntülerinden otonom tespit yapan bir YOLOv8 modeli geliştirildi.</li>
+                        <li>Model %84 kesinlik ve %67 mAP50 ile hasarlı direk, izolatör ve ağaç ihlallerini tespit ediyor; ince kablo kopukluklarında duyarlılığın artırılması hedefleniyor.</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [Görüntü İşleme Örneği - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide38.jpg" alt="Slide 38" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide39.jpg" alt="Slide 39" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide40.jpg" alt="Slide 40" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide41.jpg" alt="Slide 41" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide42.jpg" alt="Slide 42" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide43.jpg" alt="Slide 43" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
@@ -1074,14 +1234,84 @@
             <section id="bolum-08" class="fluid-section" data-aos="fade-up" data-aos-offset="200">
                 <div class="huge-number">08</div>
                 <div class="fluid-content">
-                    <h2 class="fluid-title">Yapay Zeka Destekli Önleyici Bakım Mimarisi</h2>
-                    <ul class="fluid-list">
-                        <li>[Taslak İçerik] Tüm bu alt sistemlerin uçtan uca nasıl entegre çalıştığını gösteren genel sistem mimarisi.</li>
-                        <li>[Taslak İçerik] Bulut altyapısı, veritabanı akışı ve canlı gösterge paneli (Dashboard) entegrasyonu.</li>
+                    <h2 class="fluid-title">Canlı Şebeke İzleme Dashboard'u ve Sistem Mimarisi</h2>
+                    <ul class="fluid-list" style="margin-top: 30px;">
+                        <li>Veri, Analitik, Karar Destek ve Dashboard UI olmak üzere 4 katmanlı esnek ve modüler bir sistem mimarisi sıfırdan kurgulandı.</li>
+                        <li>OMS kesinti verilerinden canlı arayüze otomatik veri akışı sağlanarak ekip çıktıları ve maliyet kararları Streamlit dashboard'una entegre edildi.</li>
                     </ul>
                 </div>
-                <div class="fluid-media">
-                    [Sistem Mimarisi Şeması - Yer Tutucu]
+                <div class="fluid-media" style="background: none; border: none; box-shadow: none; min-height: auto;">
+                    <div class="slides-card" style="background: #ffffff; border-radius: 24px; padding: 12px 12px 24px 12px; box-shadow: 0 12px 40px rgba(0, 44, 95, 0.08); display: flex; flex-direction: column; align-items: center; width: 100%;">
+                        <div class="slides-visible" style="width: 100%;">
+                            <img src="slides/Slide44.jpg" alt="Slide 44" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                        </div>
+                        <div class="slides-hidden" style="display: none; width: 100%; flex-direction: column; gap: 16px; margin-top: 16px;">
+                                                        <img src="slides/Slide45.jpg" alt="Slide 45" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide46.jpg" alt="Slide 46" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide47.jpg" alt="Slide 47" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+                            <img src="slides/Slide48.jpg" alt="Slide 48" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);">
+
+                        </div>
+                        <button class="show-more-btn" onclick="toggleSlides(this)" style="margin-top: 16px; background: #002C5F; color: #fff; border: none; border-radius: 30px; padding: 10px 24px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; box-shadow: 0 8px 20px rgba(0, 44, 95, 0.2);">
+                            Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            
+            <!-- ÖNE ÇIKAN ÖZELLİKLER BÖLÜMÜ -->
+            <section id="ozellikler" style="width: 100%; max-width: 1200px; margin: 0 auto 120px auto; padding: 0 20px;">
+                <h2 class="section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 60px;">Öne Çıkan Özellikler</h2>
+                <div class="features-grid" data-aos="fade-up" data-aos-delay="200">
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon-container">🛠️</div>
+                        <h3 class="feature-title">Kestirimci Bakım</h3>
+                        <p class="feature-desc">Reaktif bakıma kıyasla plansız kesintilerde %40 düşüş, bakım maliyetinde %30 tasarruf sağlanıyor.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-container">🧹</div>
+                        <h3 class="feature-title">Temiz & Güvenilir Veri</h3>
+                        <p class="feature-desc">20.715 varlık ile 100 binin üzerinde SCADA/OMS kaydı birleştirilip standardize edildi, SAIDI göstergesi %4 düzeltildi.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-container">🧠</div>
+                        <h3 class="feature-title">7 Günlük Arıza Tahmini</h3>
+                        <p class="feature-desc">Random Forest modeli ilk 350 hedefte %59,7 sahada isabet ve 2,53 kat lift ile arızaları önceden işaret ediyor.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-container">📊</div>
+                        <h3 class="feature-title">0–100 Risk Skoru</h3>
+                        <p class="feature-desc">ISO 31000 uyumlu model, 20.715 varlığın tamamını tek bir risk skoruna indirgiyor; kritik varlıklar anında görünür.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-container">💰</div>
+                        <h3 class="feature-title">Optimum Bakım Planı</h3>
+                        <p class="feature-desc">Lineer programlama ile 6.278 varlık önceliklendirildi; 40,9M TL beklenen fayda, kısıtlı ekip kapasitesine göre planlandı.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-container">📉</div>
+                        <h3 class="feature-title">SAIDI–SAIFI İyileşmesi</h3>
+                        <p class="feature-desc">Mersin pilot bölgesinde önerilen program ile kırsal SAIDI 2.607'den 987'ye, SAIFI 12,7'den 4,8'e düşürülüyor.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-container">📷</div>
+                        <h3 class="feature-title">Görüntüyle Arıza Tespiti</h3>
+                        <p class="feature-desc">YOLOv8 tabanlı model, saha fotoğraflarında hasarlı direk/izolatör ve ağaç ihlalini %84 kesinlikle tespit ediyor.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon-container">🗺️</div>
+                        <h3 class="feature-title">Canlı İzleme Ekranı</h3>
+                        <p class="feature-desc">4 katmanlı mimari üzerine kurulu Streamlit dashboard'u, risk haritasını ve canlı arıza uyarılarını tek ekranda topluyor.</p>
+                    </div>
                 </div>
             </section>
 
@@ -1098,6 +1328,23 @@
                     </iframe>
                 </div>
             </section>
+
+            
+            <script>
+                function toggleSlides(btn) {
+                    const card = btn.closest('.slides-card');
+                    const hiddenDiv = card.querySelector('.slides-hidden');
+                    
+                    if (hiddenDiv.style.display === 'none') {
+                        hiddenDiv.style.display = 'flex';
+                        btn.innerHTML = 'Daha Az Göster <span class="arrow" style="font-size: 0.9em;">▲</span>';
+                    } else {
+                        hiddenDiv.style.display = 'none';
+                        btn.innerHTML = 'Diğer Slaytları Görüntüle <span class="arrow" style="font-size: 0.9em;">▼</span>';
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            </script>
 
             <!-- AOS JS -->
             <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
